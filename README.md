@@ -47,10 +47,17 @@
 
 **💬 Comunicación**
 
-**Para resolver dudas o buscar compañeros de equipo, se habilitarán los canales oficiales de comunicación de la Fundación.**
+Para resolver dudas o buscar compañeros de equipo, se habilitarán los canales oficiales de comunicación de la Fundación.
 
-**
---
+## 📁 Estructura del Repositorio
+
+| Carpeta/Archivo | Descripción |
+|-----------------|-------------|
+| [template-proyecto/](./template-proyecto) | Plantilla opcional para tu proyecto |
+| [docs/guia-evaluacion.md](./docs/guia-evaluacion.md) | Guía de evaluación y criterios |
+| [.github/ISSUE_TEMPLATE/](./.github/ISSUE_TEMPLATE) | Templates para entregas |
+
+---
 
 **
 
