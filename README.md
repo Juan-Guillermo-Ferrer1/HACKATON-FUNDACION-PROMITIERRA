@@ -1,6 +1,5 @@
 # HACKATON-FUNDACION-KAROL-T
 
-
 **🚀 Hackatón Talento Caqueteño - Fundación Kasa T**
 
 **¡Bienvenidos a la competición de código organizada por la **Fundación Kasa T** **! Este evento busca identificar y potenciar el talento tecnológico del departamento del Caquetá. Invitamos a desarrolladores a trabajar de forma individual o en grupo para resolver desafíos técnicos en un tiempo determinado**.
@@ -51,14 +50,10 @@ Para resolver dudas o buscar compañeros de equipo, se habilitarán los canales 
 
 ## 📁 Estructura del Repositorio
 
-| Carpeta/Archivo | Descripción |
-|-----------------|-------------|
-| [template-proyecto/](./template-proyecto) | Plantilla opcional para tu proyecto |
-| [docs/guia-evaluacion.md](./docs/guia-evaluacion.md) | Guía de evaluación y criterios |
-| [.github/ISSUE_TEMPLATE/](./.github/ISSUE_TEMPLATE) | Templates para entregas |
-
----
-
-**
+| Carpeta/Archivo                                   | Descripción                        |
+| ------------------------------------------------- | ----------------------------------- |
+| [template-proyecto/](./template-proyecto)            | Plantilla opcional para tu proyecto |
+| [docs/guia-evaluacion.md](./docs/guia-evaluacion.md) | Guía de evaluación y criterios    |
+| [.github/ISSUE_TEMPLATE/](./.github/ISSUE_TEMPLATE)  | Templates para entregas             |
 
 *Impulsando el futuro tecnológico desde el Caquetá.*
