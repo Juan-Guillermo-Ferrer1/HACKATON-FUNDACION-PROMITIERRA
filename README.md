@@ -1,7 +1,7 @@
 # 🤖 Hackathon de Innovación: IA & Automatización 2026
 
 <p align="center">
-  <img src="Logo microsoft.png" width="100%">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/9/96/Microsoft_logo_%282012%29.svg" width="100%">
 </p>
 
 ## 🏛️ Fundación ProMiTierra | Caquetá, Colombia
