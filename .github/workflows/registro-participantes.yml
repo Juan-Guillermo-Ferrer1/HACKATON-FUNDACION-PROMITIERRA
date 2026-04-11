@@ -65,45 +65,69 @@ jobs:
             lines = body.split('\n')
             current_field = None
 
-            for i, line in enumerate(lines):
-              line_stripped = line.strip()
-              
-              if 'Nombre del Equipo' in line or 'Equipo/Participante' in line:
-                current_field = 'equipo'
-              elif 'Nombre de los Integrantes' in line or 'Integrantes' in line:
-                current_field = 'integrantes'
-              elif 'Correo' in line:
-                current_field = 'correo'
-              elif 'Institución' in line or 'Colegio' in line or 'Universidad' in line:
-                current_field = 'institucion'
-              elif 'Edad' in line:
-                current_field = 'edades'
-              elif 'Skills' in line or 'Conocimientos' in line:
-                current_field = 'skills'
-              elif 'Categoría' in line or 'Categoria' in line:
-                current_field = 'categoria'
-              elif 'experiencia' in line.lower() or 'programando' in line.lower():
-                current_field = 'experiencia'
-              elif line_stripped.startswith('- ['):
-                if current_field == 'categoria' and 'x' in line:
-                  match = re.search(r'\[x\]\s*(.+)', line)
-                  if match:
-                    categoria = match.group(1).strip()
-                elif current_field == 'experiencia' and 'x' in line:
-                  match = re.search(r'\[x\]\s*(.+)', line)
-                  if match:
-                    experiencia = match.group(1).strip()
-              elif line_stripped and not line_stripped.startswith('#') and not line_stripped.startswith('-'):
-                if current_field == 'integrantes':
-                  nombre_integrantes.append(line_stripped)
-                elif current_field == 'correo' and not correo and '@' in line_stripped:
-                  correo = line_stripped
-                elif current_field == 'institucion' and not institucion:
-                  institucion = line_stripped
-                elif current_field == 'edades' and not edades:
-                  edades = line_stripped
-                elif current_field == 'skills' and not skills:
-                  skills = line_stripped
+            lines = body.split('\n')
+              current_field = None
+              new_field_markers = ['## Nombre del Equipo', '## Nombre de los Integrantes', '## Correo', '## Institución', '## Edades', '## Skills', '## Categoría', '## ¿Ya tienes experiencia']
+
+              for i, line in enumerate(lines):
+                line_stripped = line.strip()
+                
+                # Detectar nuevo campo por headers
+                if 'Nombre del Equipo' in line:
+                  current_field = 'equipo'
+                  continue
+                elif 'Nombre de los Integrantes' in line or '## Nombre' in line:
+                  current_field = 'integrantes'
+                  continue
+                elif 'Correo' in line:
+                  current_field = 'correo'
+                  continue
+                elif 'Institución' in line or 'Colegio' in line or 'Universidad' in line:
+                  current_field = 'institucion'
+                  continue
+                elif 'Edad' in line:
+                  current_field = 'edades'
+                  continue
+                elif 'Skills' in line or 'Conocimientos' in line:
+                  current_field = 'skills'
+                  continue
+                elif 'Categoría' in line or 'Categoria' in line:
+                  current_field = 'categoria'
+                  continue
+                elif 'experiencia' in line.lower() or 'programando' in line.lower():
+                  current_field = 'experiencia'
+                  continue
+                
+                # Procesar contenido
+                if line_stripped.startswith('- ['):
+                  if current_field == 'categoria' and 'x' in line.lower():
+                    match = re.search(r'\[x\]\s*(.+)', line)
+                    if match:
+                      categoria = match.group(1).strip()
+                  elif current_field == 'experiencia' and 'x' in line.lower():
+                    match = re.search(r'\[x\]\s*(.+)', line)
+                    if match:
+                      experiencia = match.group(1).strip()
+                elif line_stripped and not line_stripped.startswith('#') and not line_stripped.startswith('-'):
+                  if current_field == 'integrantes':
+                    if line_stripped and not line_stripped.startswith('('):
+                      nombre_integrantes.append(line_stripped)
+                  elif current_field == 'correo' and '@' in line_stripped:
+                    correo = line_stripped
+                  elif current_field == 'institucion':
+                    institucion = line_stripped
+                  elif current_field == 'edades':
+                    if line_stripped and not line_stripped.startswith('('):
+                      if edades:
+                        edades += ', ' + line_stripped
+                      else:
+                        edades = line_stripped
+                  elif current_field == 'skills':
+                    if line_stripped and not line_stripped.startswith('('):
+                      if skills:
+                        skills += ', ' + line_stripped
+                      else:
+                        skills = line_stripped
 
             data = {
               'equipo': equipo,
