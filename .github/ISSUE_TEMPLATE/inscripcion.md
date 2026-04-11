@@ -8,28 +8,53 @@ assignees: ''
 
 ## Nombre del Equipo/Participante
 
+> Ejemplo: LosProgramadores, Equipo Innovation, Code Warriors
+
+---
 
 ## Nombre de los Integrantes (uno por línea)
 
+> Ejemplo:
+> - Juan Pérez
+> - Maria Garcia
+> - Carlos López
+
+---
 
 ## Correo de contacto
 
+> Ejemplo: correo@ejemplo.com
+
+---
 
 ## Institución / Colegio / Universidad
 
+> Ejemplo: Liceo Nacional, Universidad de Antioquia, Colegio San José
 
-## Edades de los integrantes (ej: 15-17 años)
+---
 
+## Edades de los integrantes
 
-## Skills / Conocimientos (ej: Python, JavaScript, Diseño, etc.)
+> Ejemplo: 15-17 años (o 18-22 años, etc.)
 
+---
+
+## Skills / Conocimientos
+
+> Ejemplo: Python, JavaScript, Diseño gráfico, Base de datos, HTML/CSS
+
+---
 
 ## Categoría de participación
-- [ ] Principiante
-- [ ] Intermedio
-- [ ] Avanzado
+
+- [ ] Principiante (nunca he programado)
+- [ ] Intermedio (tengo conocimientos básicos)
+- [ ] Avanzado (tengo experiencia significativa)
+
+---
 
 ## ¿Ya tienes experiencia programando?
+
 - [ ] Ninguna
-- [ ] Básica
-- [ ] Intermedia
+- [ ] Básica (algún curso o práctica)
+- [ ] Intermedia (proyectos propios o trabajo)
