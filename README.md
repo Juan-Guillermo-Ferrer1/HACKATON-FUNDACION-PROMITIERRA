@@ -31,7 +31,7 @@ DockPloy es nuestra plataforma de orquestación. Los proyectos destacados podrá
 ## 💻 Aliados Tecnológicos / Tech Stack
 
 <p align="center">
-  <img src=".logos/n8n.png" height="60"> &nbsp;&nbsp;
+  <img src=".logos/n8n.png" height="80"> &nbsp;&nbsp;
   <img src=".logos/docker.png" height="60">
 </p>
 
