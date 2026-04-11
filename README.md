@@ -32,18 +32,26 @@ DockPloy es nuestra plataforma de orquestación. Los proyectos destacados podrá
 
 <p align="center">
   <img src=".logos/n8n.png" height="80"> &nbsp;&nbsp;
-  <img src=".logos/docker.png" height="60">
+  <img src=".logos/docker.png" height="80"> &nbsp;&nbsp;
+  <img src=".logos/github.png" height="60">
 </p>
 
 <p align="center">
-  <img src=".logos/python.png" height="50"> &nbsp;&nbsp;
-  <img src=".logos/nodejs.png" height="50">
+  <img src=".logos/python.png" height="60"> &nbsp;&nbsp;
+  <img src=".logos/nodejs.png" height="60"> &nbsp;&nbsp;
+  <img src=".logos/typescript.png" height="60"> &nbsp;&nbsp;
+  <img src=".logos/react.png" height="60">
 </p>
 
 <p align="center">
-  <img src=".logos/openai.png" height="50"> &nbsp;&nbsp;
-  <img src=".logos/ollama.png" height="50"> &nbsp;&nbsp;
-  <img src=".logos/anthropic.png" height="50">
+  <img src=".logos/openai.png" height="60"> &nbsp;&nbsp;
+  <img src=".logos/ollama.png" height="60"> &nbsp;&nbsp;
+  <img src=".logos/anthropic.png" height="60">
+</p>
+
+<p align="center">
+  <img src=".logos/postgresql.png" height="50"> &nbsp;&nbsp;
+  <img src=".logos/mongodb.png" height="50">
 </p>
 
 > 📖 Consulta el archivo [DOCUMENTACION_TECNICA.md](./Documentacion/DOCUMENTACION_TECNICA.md) para las instrucciones de configuración.

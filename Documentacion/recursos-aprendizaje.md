@@ -1,5 +1,11 @@
 # Recursos de Aprendizaje para Principiantes
 
+<p align="center">
+  <img src="../.logos/python.png" height="50"> &nbsp;&nbsp;
+  <img src="../.logos/vscode.png" height="50"> &nbsp;&nbsp;
+  <img src="../.logos/github.png" height="50">
+</p>
+
 Colección de videos y tutoriales en español para aprender a programar y usar las herramientas necesarias.
 
 ---

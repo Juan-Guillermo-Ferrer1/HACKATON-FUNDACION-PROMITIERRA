@@ -8,6 +8,12 @@
 
 ## 🧠 1. Arquitectura de IA
 
+<p align="center">
+  <img src="../.logos/openai.png" height="50"> &nbsp;&nbsp;
+  <img src="../.logos/anthropic.png" height="50"> &nbsp;&nbsp;
+  <img src="../.logos/ollama.png" height="50">
+</p>
+
 ### Opciones de Integración
 
 #### Opción A: APIs Externas (OpenAI, Anthropic, Hugging Face)
@@ -107,6 +113,12 @@ print(result['output'])
 
 ## ⚙️ 2. Automatización de Tareas
 
+<p align="center">
+  <img src="../.logos/python.png" height="40"> &nbsp;&nbsp;
+  <img src="../.logos/nodejs.png" height="40"> &nbsp;&nbsp;
+  <img src="../.logos/n8n.png" height="40">
+</p>
+
 ### Python Scripts
 
 ```python
@@ -195,6 +207,11 @@ nodes:
 ---
 
 ## 🐳 3. Despliegue con Docker y DockPloy
+
+<p align="center">
+  <img src="../.logos/docker.png" height="60"> &nbsp;&nbsp;
+  <img src="../.logos/dokploy.png" height="60">
+</p>
 
 ### Dockerfile Estándar
 
@@ -389,6 +406,27 @@ if (!apiKey) {
 ---
 
 ## 🛠️ 5. Tech Stack Recomendado
+
+<p align="center">
+  <img src="../.logos/python.png" height="40"> &nbsp;&nbsp;
+  <img src="../.logos/nodejs.png" height="40">
+</p>
+
+<p align="center">
+  <img src="../.logos/openai.png" height="40"> &nbsp;&nbsp;
+  <img src="../.logos/ollama.png" height="40"> &nbsp;&nbsp;
+  <img src="../.logos/anthropic.png" height="40">
+</p>
+
+<p align="center">
+  <img src="../.logos/postgresql.png" height="40"> &nbsp;&nbsp;
+  <img src="../.logos/mongodb.png" height="40">
+</p>
+
+<p align="center">
+  <img src="../.logos/docker.png" height="40"> &nbsp;&nbsp;
+  <img src="../.logos/github.png" height="40">
+</p>
 
 | Categoría | Recomendado | Alternativo |
 |-----------|-------------|-------------|
