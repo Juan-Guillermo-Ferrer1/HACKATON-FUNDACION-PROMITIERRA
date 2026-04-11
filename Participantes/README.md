@@ -1,7 +1,7 @@
 # Participantes Registrados
 
-| # | Equipo | Integrantes | Correo | Categoría | Experiencia | Fecha |
+| # | Equipo | Integrantes | Correo | Categoria | Experiencia | Fecha |
 |---|--------|-------------|--------|-----------|-------------|-------|
-| 0 | - | - | - | - | - | - |
+| 1 | LOs pros | Juan Guillermo, Martín, Fernando | [juangasca4444@gmail.com](mailto:juangasca4444@gmail.com) |  |  | 2026-04-11 |
 
-*Esta lista se actualiza automáticamente cuando un participante se registra mediante un issue.*
+*Esta lista se actualiza automaticamente cuando un participante se registra mediante un issue.*
