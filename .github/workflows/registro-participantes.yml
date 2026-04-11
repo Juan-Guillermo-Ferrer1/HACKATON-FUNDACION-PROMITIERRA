@@ -54,9 +54,11 @@ jobs:
             print(f"Participante eliminado: {equipo}")
           else:
             # Agregar o actualizar participante
-            participantes = []
             nombre_integrantes = []
             correo = ''
+            institucion = ''
+            edades = ''
+            skills = ''
             categoria = ''
             experiencia = ''
 
@@ -70,6 +72,12 @@ jobs:
                 current_field = 'integrantes'
               elif 'Correo' in line:
                 current_field = 'correo'
+              elif 'Institución' in line or 'Colegio' in line or 'Universidad' in line:
+                current_field = 'institucion'
+              elif 'Edad' in line:
+                current_field = 'edades'
+              elif 'Skills' in line or 'Conocimientos' in line:
+                current_field = 'skills'
               elif 'Categoría' in line or 'Categoria' in line:
                 current_field = 'categoria'
               elif 'experiencia' in line.lower() or 'programando' in line.lower():
@@ -89,11 +97,20 @@ jobs:
                   nombre_integrantes.append(value)
                 elif current_field == 'correo' and not correo and '@' in value:
                   correo = value
+                elif current_field == 'institucion' and not institucion:
+                  institucion = value
+                elif current_field == 'edades' and not edades:
+                  edades = value
+                elif current_field == 'skills' and not skills:
+                  skills = value
 
             data = {
               'equipo': equipo,
               'integrantes': nombre_integrantes,
               'correo': correo,
+              'institucion': institucion,
+              'edades': edades,
+              'skills': skills,
               'categoria': categoria,
               'experiencia': experiencia,
               'fecha_inscripcion': '${{ github.event.issue.created_at }}',
@@ -107,11 +124,11 @@ jobs:
           with open(filepath, 'w') as f:
             json.dump(existing, f, indent=2, ensure_ascii=False)
 
-          readme_content = "# Participantes Registrados\n\n| # | Equipo | Integrantes | Correo | Categoria | Experiencia | Fecha |\n|---|--------|-------------|--------|-----------|-------------|-------|\n"
+          readme_content = "# Participantes Registrados\n\n| # | Equipo | Integrantes | Institucion | Edades | Skills | Correo | Categoria | Experiencia | Fecha |\n|---|--------|-------------|-------------|--------|--------|--------|-----------|-------------|-------|\n"
           for i, p in enumerate(existing):
             integrantes = ', '.join(p.get('integrantes', []))
             fecha = p.get('fecha_inscripcion', '')[:10]
-            readme_content += f"| {i+1} | {p.get('equipo', '')} | {integrantes} | {p.get('correo', '')} | {p.get('categoria', '')} | {p.get('experiencia', '')} | {fecha} |\n"
+            readme_content += f"| {i+1} | {p.get('equipo', '')} | {integrantes} | {p.get('institucion', '')} | {p.get('edades', '')} | {p.get('skills', '')} | {p.get('correo', '')} | {p.get('categoria', '')} | {p.get('experiencia', '')} | {fecha} |\n"
 
           readme_content += "\n*Esta lista se actualiza automaticamente cuando un participante se registra mediante un issue.*\n"
 

@@ -15,6 +15,15 @@ assignees: ''
 ## Correo de contacto
 
 
+## Institución / Colegio / Universidad
+
+
+## Edades de los integrantes (ej: 15-17 años)
+
+
+## Skills / Conocimientos (ej: Python, JavaScript, Diseño, etc.)
+
+
 ## Categoría de participación
 - [ ] Principiante
 - [ ] Intermedio
