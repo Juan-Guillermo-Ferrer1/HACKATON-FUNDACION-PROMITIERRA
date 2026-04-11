@@ -2,7 +2,7 @@
 
 ## 🏛️ Fundación ProMiTierra | Caquetá, Colombia
 
-![Banner del Hackatón](https://via.placeholder.com/800x200?text=Hackathon+IA+Automatizacion+2026)
+![Banner del Hackatón](https://github.com/Juan-Guillermo-Ferrer1/HACKATON-FUNDACION-KAROL-T/blob/main/Logo%20microsoft.png)
 
 Este repositorio es la base técnica para la Hackathon de Talento Regional. El desafío de este año se centra en el uso de Inteligencia Artificial y flujos de Automatización para resolver problemas reales del departamento del Caquetá.
 
