@@ -18,17 +18,18 @@
   {
     "equipo": "Equipo Verde",
     "integrantes": [
-      "Juan Guillermo Ferrer Gasca",
-      "Pepito Perez",
-      "Fernando"
+      "> Escribe el nombre de cada integrante en una línea separada:",
+      "> - Juan Pérez",
+      "> - María García",
+      "> - Carlos López"
     ],
-    "correo": "juangasca4444@gmail.com",
-    "institucion": "University Amazonia",
-    "edades": "17",
-    "skills": "Nuevos",
-    "categoria": "Avanzado",
-    "experiencia": "Intermedia",
-    "fecha_inscripcion": "2026-04-11T22:15:30Z",
-    "issue_url": "https://github.com/Juan-Guillermo-Ferrer1/HACKATON-FUNDACION-PROMITIERRA/issues/14"
+    "correo": "> Escribe un correo electrónico válido para contactar al equipo (ejemplo: \"juan@email.com\")",
+    "institucion": "uNIVERSIDAD Amazonica",
+    "edades": "> Escribe las edades de todos los integrantes (ejemplo: \"16, 17, 18\")",
+    "skills": "> Describe los conocimientos técnicos de tu equipo:",
+    "categoria": "",
+    "experiencia": "",
+    "fecha_inscripcion": "2026-04-11T22:20:13Z",
+    "issue_url": "https://github.com/Juan-Guillermo-Ferrer1/HACKATON-FUNDACION-PROMITIERRA/issues/15"
   }
 ]
