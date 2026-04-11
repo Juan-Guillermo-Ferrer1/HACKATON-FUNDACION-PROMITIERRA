@@ -7,27 +7,36 @@ assignees: ''
 ---
 
 ## Nombre del Equipo
-(Escribe el nombre de tu equipo)
+Ejemplo: Los Inventores del Caquetá
 
 
 ## Nombre de los Integrantes
-(Escribe cada nombre en una línea separada)
+Ejemplo:
+Juan Pérez García
+María López Soto
+Carlos Martínez Díaz
 
 
 ## Correo de contacto
-(Escribe tu correo electrónico)
+Ejemplo: juanperez@email.com
 
 
 ## Institución / Colegio / Universidad
-(Escribe el nombre de tu institución)
+Ejemplo: Universidad Nacional de Colombia - Sede Florencia
 
 
 ## Edades de los integrantes
-(Escribe cada edad en una línea separada, ej: 15, 16, 17)
+Ejemplo:
+15
+16
+17
 
 
 ## Skills / Conocimientos
-(Describe tus conocimientos)
+Ejemplo:
+Python básico
+HTML y CSS
+He creado una página web simple
 
 
 ## Categoría de participación
