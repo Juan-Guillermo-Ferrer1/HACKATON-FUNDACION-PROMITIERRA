@@ -1,6 +1,6 @@
 # 📖 Documentación Técnica - Hackathon IA & Automatización 2026
 
-## Fundación Karol T | Caquetá, Colombia
+## Fundación ProMiTierra | Caquetá, Colombia
 
 > Este documento es una guía técnica para los participantes de la Hackathon. Aquí encontrarás todo lo necesario para integrar herramientas de IA, automatización y desplegar tu proyecto en nuestra infraestructura.
 
@@ -99,7 +99,7 @@ tools = [
 agent = create_openai_functions_agent(llm, tools, prompt)
 agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=True)
 
-result = agent_executor.invoke({"input": "¿Qué tecnologías usa Karol T?"})
+result = agent_executor.invoke({"input": "¿Qué tecnologías usa ProMiTierra?"})
 print(result['output'])
 ```
 
@@ -260,7 +260,7 @@ volumes:
 
 ```yaml
 # dockploy.yml
-name: hackathon-karolt
+name: hackathon-promitierra
 version: 1.0
 
 services:
@@ -437,4 +437,4 @@ Si tienes dudas técnicas, crea un Issue usando la plantilla "Pregunta / Duda" o
 ---
 
 *¡Éxito en tu proyecto! 🎯*
-*Fundación Karol T - Innovación con Sentido Humano*
+*Fundación ProMiTierra - Innovación con Sentido Humano*

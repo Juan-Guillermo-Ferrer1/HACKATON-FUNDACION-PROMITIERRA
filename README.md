@@ -1,6 +1,6 @@
 # 🤖 Hackathon de Innovación: IA & Automatización 2026
 
-## 🏛️ Fundación Karol T | Caquetá, Colombia
+## 🏛️ Fundación ProMiTierra | Caquetá, Colombia
 
 ![Banner del Hackatón](https://via.placeholder.com/800x200?text=Hackathon+IA+Automatizacion+2026)
 
@@ -56,15 +56,15 @@ DockPloy es nuestra plataforma de orquestación. Los proyectos destacados podrá
 
 ## 💡 Mensaje a la Juventud Caqueteña
 
-> "La tecnología no es solo una herramienta, es el motor que transformará nuestra Amazonía. En la Fundación Karol T, creemos que el próximo gran algoritmo de IA se escribirá aquí, en el Caquetá."
+> "La tecnología no es solo una herramienta, es el motor que transformará nuestra Amazonía. En la Fundación ProMiTierra, creemos que el próximo gran algoritmo de IA se escribirá aquí, en el Caquetá."
 
 ---
 
 ## 📧 Contacto
 
-- **Correo:** contacto@fundacionkarolt.org
+- **Correo:** contacto@fundacionpromitierra.org
 - **Ubicación:** Florencia, Caquetá, Colombia
 
 ---
 
-© 2026 Fundación Karol T - Innovación con Sentido Humano.
+© 2026 Fundación ProMiTierra - Innovación con Sentido Humano.
