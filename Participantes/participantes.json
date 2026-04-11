@@ -14,5 +14,21 @@
     "experiencia": "Intermedia",
     "fecha_inscripcion": "2026-04-11T21:04:30Z",
     "issue_url": "https://github.com/Juan-Guillermo-Ferrer1/HACKATON-FUNDACION-PROMITIERRA/issues/12"
+  },
+  {
+    "equipo": "Equipo Verde",
+    "integrantes": [
+      "Juan Guillermo Ferrer Gasca",
+      "Pepito Perez",
+      "Fernando"
+    ],
+    "correo": "juangasca4444@gmail.com",
+    "institucion": "University Amazonia",
+    "edades": "17",
+    "skills": "Nuevos",
+    "categoria": "",
+    "experiencia": "",
+    "fecha_inscripcion": "2026-04-11T22:15:30Z",
+    "issue_url": "https://github.com/Juan-Guillermo-Ferrer1/HACKATON-FUNDACION-PROMITIERRA/issues/14"
   }
 ]
