@@ -6,7 +6,7 @@ on:
 
 jobs:
   registro:
-    if: contains(github.event.issue.labels.*.name, 'inscripcion')
+    if: startsWith(github.event.issue.title, '[INSCRIPCIÓN]')
     runs-on: ubuntu-latest
     permissions:
       contents: write
