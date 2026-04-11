@@ -2,7 +2,7 @@ name: Registro de Participantes
 
 on:
   issues:
-    types: [opened, edited]
+    types: [opened, edited, closed]
 
 jobs:
   registro:
@@ -12,6 +12,7 @@ jobs:
       contents: write
     env:
       FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: 'true'
+      ACTION: ${{ github.event.action }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -28,6 +29,7 @@ jobs:
         env:
           ISSUE_BODY: ${{ github.event.issue.body }}
           ISSUE_TITLE: ${{ github.event.issue.title }}
+          ACTION: ${{ github.event.action }}
         run: |
           python3 << 'EOF'
           import json
@@ -36,54 +38,9 @@ jobs:
 
           body = os.environ.get('ISSUE_BODY', '')
           title = os.environ.get('ISSUE_TITLE', '')
+          action = os.environ.get('ACTION', '')
 
           equipo = title.replace('[INSCRIPCIÓN] - ', '').strip()
-
-          participantes = []
-          nombre_integrantes = []
-          correo = ''
-          categoria = ''
-          experiencia = ''
-
-          lines = body.split('\n')
-          current_field = None
-
-          for line in lines:
-            if 'Nombre del Equipo' in line or 'Equipo/Participante' in line:
-              current_field = 'equipo'
-            elif 'Nombre de los Integrantes' in line or 'Integrantes' in line:
-              current_field = 'integrantes'
-            elif 'Correo' in line:
-              current_field = 'correo'
-            elif 'Categoría' in line or 'Categoria' in line:
-              current_field = 'categoria'
-            elif 'experiencia' in line.lower() or 'programando' in line.lower():
-              current_field = 'experiencia'
-            elif line.strip().startswith('- ['):
-              if current_field == 'categoria' and 'x' in line:
-                match = re.search(r'\[x\]\s*(.+)', line)
-                if match:
-                  categoria = match.group(1).strip()
-              elif current_field == 'experiencia' and 'x' in line:
-                match = re.search(r'\[x\]\s*(.+)', line)
-                if match:
-                  experiencia = match.group(1).strip()
-            elif line.strip() and not line.strip().startswith('#') and not line.strip().startswith('-'):
-              value = line.strip()
-              if current_field == 'integrantes' and value:
-                nombre_integrantes.append(value)
-              elif current_field == 'correo' and not correo and '@' in value:
-                correo = value
-
-          data = {
-            'equipo': equipo,
-            'integrantes': nombre_integrantes,
-            'correo': correo,
-            'categoria': categoria,
-            'experiencia': experiencia,
-            'fecha_inscripcion': '${{ github.event.issue.created_at }}',
-            'issue_url': '${{ github.event.issue.html_url }}'
-          }
 
           filepath = 'Participantes/participantes.json'
           existing = []
@@ -91,8 +48,61 @@ jobs:
             with open(filepath, 'r') as f:
               existing = json.load(f)
 
-          existing = [p for p in existing if p.get('equipo') != equipo]
-          existing.append(data)
+          # Si el issue se cierra, eliminar participante
+          if action == 'closed':
+            existing = [p for p in existing if p.get('equipo', '').lower() != equipo.lower()]
+            print(f"Participante eliminado: {equipo}")
+          else:
+            # Agregar o actualizar participante
+            participantes = []
+            nombre_integrantes = []
+            correo = ''
+            categoria = ''
+            experiencia = ''
+
+            lines = body.split('\n')
+            current_field = None
+
+            for line in lines:
+              if 'Nombre del Equipo' in line or 'Equipo/Participante' in line:
+                current_field = 'equipo'
+              elif 'Nombre de los Integrantes' in line or 'Integrantes' in line:
+                current_field = 'integrantes'
+              elif 'Correo' in line:
+                current_field = 'correo'
+              elif 'Categoría' in line or 'Categoria' in line:
+                current_field = 'categoria'
+              elif 'experiencia' in line.lower() or 'programando' in line.lower():
+                current_field = 'experiencia'
+              elif line.strip().startswith('- ['):
+                if current_field == 'categoria' and 'x' in line:
+                  match = re.search(r'\[x\]\s*(.+)', line)
+                  if match:
+                    categoria = match.group(1).strip()
+                elif current_field == 'experiencia' and 'x' in line:
+                  match = re.search(r'\[x\]\s*(.+)', line)
+                  if match:
+                    experiencia = match.group(1).strip()
+              elif line.strip() and not line.strip().startswith('#') and not line.strip().startswith('-'):
+                value = line.strip()
+                if current_field == 'integrantes' and value:
+                  nombre_integrantes.append(value)
+                elif current_field == 'correo' and not correo and '@' in value:
+                  correo = value
+
+            data = {
+              'equipo': equipo,
+              'integrantes': nombre_integrantes,
+              'correo': correo,
+              'categoria': categoria,
+              'experiencia': experiencia,
+              'fecha_inscripcion': '${{ github.event.issue.created_at }}',
+              'issue_url': '${{ github.event.issue.html_url }}'
+            }
+
+            existing = [p for p in existing if p.get('equipo', '').lower() != equipo.lower()]
+            existing.append(data)
+            print(f"Participante registrado: {equipo}")
 
           with open(filepath, 'w') as f:
             json.dump(existing, f, indent=2, ensure_ascii=False)
@@ -108,8 +118,7 @@ jobs:
           with open('Participantes/README.md', 'w') as f:
             f.write(readme_content)
 
-          print(f"Participante registrado: {equipo}")
-          print(f"Datos: {data}")
+          print(f"Total participantes: {len(existing)}")
           EOF
 
       - name: Commit and push changes
@@ -117,5 +126,5 @@ jobs:
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
           git add Participantes/participantes.json Participantes/README.md
-          git diff --staged --quiet || git commit -m "Registrar participante de issue #${{ github.event.issue.number }}"
+          git diff --staged --quiet || git commit -m "Actualizar participante de issue #${{ github.event.issue.number }}"
           git push
