@@ -24,14 +24,25 @@ Este Hackathon va más allá de ganar un premio. Es una oportunidad para:
 
 ---
 
-## 📅 Fechas Importantes
+## 📅 Fechas (Por Definir)
 
 | Etapa | Fecha |
 |------|-------|
-| 📝 Inscripción | Hasta 30 de Abril 2026 |
-| 🚀 Inicio del Hackathon | 1 de Mayo 2026 |
-| ⏰ Entrega de Proyectos | 31 de Mayo 2026 |
-| 🏆 Anuncio de Ganadores | 5 de Junio 2026 |
+| 📝 Inscripción | Por definir |
+| 🚀 Inicio del Hackathon | Por definir |
+| ⏰ Entrega de Proyectos | Por definir |
+| 🏆 Anuncio de Ganadores | Por definir |
+
+---
+
+## 📍 Modalidad: Presencial
+
+El Hackathon se realizará de manera **presencial** en las instalaciones de la Fundación ProMiTierra.
+
+Los equiposirán acompañados por:
+- 👨‍🏫 **Tutores técnicos** que guiarán tu desarrollo
+- 👩‍💼 **Mentores** de proyectos para Ideas y negocios
+- 🔧 **Soporte técnico** disponible durante todo el evento
 
 ---
 
@@ -48,19 +59,18 @@ Aprende a poner tus soluciones en producción usando infraestructuras modernas c
 
 ---
 
-## 💰 Premios e Incentivos
+## 💰 Premios e Incentivos (Por Definir)
 
 | Lugar | Premio |
 |-------|--------|
-| 🥇 1er Lugar | $1.000.000 COP + Despliegue gratuito en DockPloy |
-| 🥈 2do Lugar | $500.000 COP + Mentoría técnica |
-| 🥉 3er Lugar | $250.000 COP |
+| 🥇 1er Lugar | Por definir |
+| 🥈 2do Lugar | Por definir |
+| 🥉 3er Lugar | Por definir |
 
 **Todos los participantes recibirán:**
 - ✅ Certificado de participación
 - ✅ Acceso a recursos de aprendizaje exclusivos
 - ✅ Red de contactos con profesionales del sector
-- ✅ Posibilidad de presentar tu proyecto a aliados de la Fundación
 
 ---
 
