@@ -1,7 +1,7 @@
 # 🤖 Hackathon de Innovación: IA & Automatización 2026
 
 <p align="center">
-  <img src="https://placehold.co/1200x300/1a1a2e/00d4ff?text=Hackathon+IA+%26+Automatizacion+2026&font=montserrat" width="100%">
+  <img src="Logo microsoft.png" width="100%">
 </p>
 
 ## 🏛️ Fundación ProMiTierra | Caquetá, Colombia
