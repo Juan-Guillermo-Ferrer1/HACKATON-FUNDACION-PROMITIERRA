@@ -10,6 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: 'true'
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -20,7 +22,7 @@ jobs:
       - name: Install Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.x'
+          python-version: '3.12'
 
       - name: Extract participant data and update JSON
         env:
@@ -53,20 +55,24 @@ jobs:
               current_field = 'integrantes'
             elif 'Correo' in line:
               current_field = 'correo'
-            elif 'Categoría' in line:
+            elif 'Categoría' in line or 'Categoria' in line:
               current_field = 'categoria'
             elif 'experiencia' in line.lower() or 'programando' in line.lower():
               current_field = 'experiencia'
             elif line.strip().startswith('- ['):
               if current_field == 'categoria' and 'x' in line:
-                categoria = re.search(r'\[x\]\s*(.+)', line).group(1).strip()
+                match = re.search(r'\[x\]\s*(.+)', line)
+                if match:
+                  categoria = match.group(1).strip()
               elif current_field == 'experiencia' and 'x' in line:
-                experiencia = re.search(r'\[x\]\s*(.+)', line).group(1).strip()
-            elif line.strip() and not line.strip().startswith('#'):
+                match = re.search(r'\[x\]\s*(.+)', line)
+                if match:
+                  experiencia = match.group(1).strip()
+            elif line.strip() and not line.strip().startswith('#') and not line.strip().startswith('-'):
               value = line.strip()
               if current_field == 'integrantes' and value:
                 nombre_integrantes.append(value)
-              elif current_field == 'correo' and not correo:
+              elif current_field == 'correo' and not correo and '@' in value:
                 correo = value
 
           data = {
@@ -103,6 +109,7 @@ jobs:
             f.write(readme_content)
 
           print(f"Participante registrado: {equipo}")
+          print(f"Datos: {data}")
           EOF
 
       - name: Commit and push changes
