@@ -1259,7 +1259,7 @@
         cargarEquipos();
 
         // Abrir GitHub Issue con datos prellenados
-        document.getElementById('registroForm').addEventListener('submit', function(e) {
+document.getElementById('registroForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             
             const equipo = document.getElementById('equipo').value;
@@ -1300,7 +1300,7 @@ ${experiencia}
 
             // Guardar en Supabase
             const integranteList = integrantes.split('\n').filter(i => i.trim());
-            await supabase.from('participantes').insert([{
+            const { data, error } = await supabase.from('participantes').insert([{
                 equipo: equipo,
                 integrantes: integranteList,
                 correo: correo,
@@ -1310,6 +1310,13 @@ ${experiencia}
                 categoria: categoria,
                 experiencia: experiencia
             }]);
+            
+            if (error) {
+                console.error('Error guardando:', error);
+                alert('Error al guardar: ' + error.message);
+            } else {
+                console.log('Guardado:', data);
+            }
 
             // Abrir nueva issue en GitHub
             const title = encodeURIComponent(`[INSCRIPCIÓN] - ${equipo}`);
@@ -1326,7 +1333,7 @@ ${experiencia}
         // Busco Equipo functionality
         let integranteData = [];
 
-        function publicarBuscoEquipo() {
+        async function publicarBuscoEquipo() {
             const nombre = document.getElementById('busco-nombre').value;
             const tipo = document.getElementById('busco-tipo').value;
             const rol = document.getElementById('busco-rol').value;
@@ -1366,7 +1373,7 @@ ${descripcion}
 *Publicado desde página web*`;
             
             // Guardar en Supabase
-            await supabase.from('busco_equipo').insert([{
+            const { data: data2, error: error2 } = await supabase.from('busco_equipo').insert([{
                 nombre: nombre,
                 tipo: tipo === 'equipo' ? 'Tengo equipo, necesito integrantes' : 'Busco equipo',
                 rol: rol,
@@ -1374,6 +1381,10 @@ ${descripcion}
                 correo: correo,
                 descripcion: descripcion
             }]);
+            
+            if (error2) {
+                console.error('Error guardando busco:', error2);
+            }
 
             const issueUrl = `https://github.com/Juan-Guillermo-Ferrer1/HACKATON-FUNDACION-PROMITIERRA/issues/new?title=${title}&body=${encodeURIComponent(body)}`;
             window.open(issueUrl, '_blank');
