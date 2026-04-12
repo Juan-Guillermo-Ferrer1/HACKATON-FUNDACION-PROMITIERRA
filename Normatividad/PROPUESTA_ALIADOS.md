@@ -3,7 +3,7 @@
 ## Hackathon de Innovación: IA & Automatización 2026
 
 <p align="center">
-<img src="../.logos/ProMiTierra Logo transparente.png" width="300">
+<img src="../.github/logos/ProMiTierra Logo transparente.png" width="300">
 </p>
 
 ---

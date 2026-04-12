@@ -1,7 +1,7 @@
 # 🤖 Hackathon de Innovación: IA & Automatización 2026
 
 <p align="center">
-  <img src=".logos/logo-hackaton.jpg" width="100%">
+  <img src=".github/logos/logo-hackaton.jpg" width="100%">
 </p>
 
 ---
@@ -105,7 +105,7 @@ Aprende a poner tus soluciones en producción usando infraestructuras modernas c
 ## 🚀 Infraestructura: DockPloy
 
 <p align="center">
-  <img src=".logos/dokploy.png" height="80">
+  <img src=".github/logos/dokploy.png" height="80">
 </p>
 
 Para esta edición, contamos con el respaldo del servidor empresarial de la Fundación y aliados, utilizando **DockPloy**.
@@ -119,27 +119,27 @@ DockPloy es nuestra plataforma de orquestación. Los proyectos destacados podrá
 ## 💻 Tech Stack / Tecnologías
 
 <p align="center">
-  <img src=".logos/n8n.png" height="80"> &nbsp;&nbsp;
-  <img src=".logos/docker.png" height="80"> &nbsp;&nbsp;
-  <img src=".logos/github.png" height="60">
+  <img src=".github/logos/n8n.png" height="80"> &nbsp;&nbsp;
+  <img src=".github/logos/docker.png" height="80"> &nbsp;&nbsp;
+  <img src=".github/logos/github.png" height="60">
 </p>
 
 <p align="center">
-  <img src=".logos/python.png" height="60"> &nbsp;&nbsp;
-  <img src=".logos/nodejs.png" height="60"> &nbsp;&nbsp;
-  <img src=".logos/typescript.png" height="60"> &nbsp;&nbsp;
-  <img src=".logos/react.png" height="60">
+  <img src=".github/logos/python.png" height="60"> &nbsp;&nbsp;
+  <img src=".github/logos/nodejs.png" height="60"> &nbsp;&nbsp;
+  <img src=".github/logos/typescript.png" height="60"> &nbsp;&nbsp;
+  <img src=".github/logos/react.png" height="60">
 </p>
 
 <p align="center">
-  <img src=".logos/openai.png" height="60"> &nbsp;&nbsp;
-  <img src=".logos/ollama.png" height="60"> &nbsp;&nbsp;
-  <img src=".logos/anthropic.png" height="60">
+  <img src=".github/logos/openai.png" height="60"> &nbsp;&nbsp;
+  <img src=".github/logos/ollama.png" height="60"> &nbsp;&nbsp;
+  <img src=".github/logos/anthropic.png" height="60">
 </p>
 
 <p align="center">
-  <img src=".logos/postgresql.png" height="50"> &nbsp;&nbsp;
-  <img src=".logos/mongodb.png" height="50">
+  <img src=".github/logos/postgresql.png" height="50"> &nbsp;&nbsp;
+  <img src=".github/logos/mongodb.png" height="50">
 </p>
 
 ---

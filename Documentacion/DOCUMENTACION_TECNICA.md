@@ -9,9 +9,9 @@
 ## 🧠 1. Arquitectura de IA
 
 <p align="center">
-  <img src="../.logos/openai.png" height="50"> &nbsp;&nbsp;
-  <img src="../.logos/anthropic.png" height="50"> &nbsp;&nbsp;
-  <img src="../.logos/ollama.png" height="50">
+  <img src="../.github/logos/openai.png" height="50"> &nbsp;&nbsp;
+  <img src="../.github/logos/anthropic.png" height="50"> &nbsp;&nbsp;
+  <img src="../.github/logos/ollama.png" height="50">
 </p>
 
 ### Opciones de Integración
@@ -114,9 +114,9 @@ print(result['output'])
 ## ⚙️ 2. Automatización de Tareas
 
 <p align="center">
-  <img src="../.logos/python.png" height="40"> &nbsp;&nbsp;
-  <img src="../.logos/nodejs.png" height="40"> &nbsp;&nbsp;
-  <img src="../.logos/n8n.png" height="40">
+  <img src="../.github/logos/python.png" height="40"> &nbsp;&nbsp;
+  <img src="../.github/logos/nodejs.png" height="40"> &nbsp;&nbsp;
+  <img src="../.github/logos/n8n.png" height="40">
 </p>
 
 ### Python Scripts
@@ -209,8 +209,8 @@ nodes:
 ## 🐳 3. Despliegue con Docker y DockPloy
 
 <p align="center">
-  <img src="../.logos/docker.png" height="60"> &nbsp;&nbsp;
-  <img src="../.logos/dokploy.png" height="60">
+  <img src="../.github/logos/docker.png" height="60"> &nbsp;&nbsp;
+  <img src="../.github/logos/dokploy.png" height="60">
 </p>
 
 ### Dockerfile Estándar
@@ -408,24 +408,24 @@ if (!apiKey) {
 ## 🛠️ 5. Tech Stack Recomendado
 
 <p align="center">
-  <img src="../.logos/python.png" height="40"> &nbsp;&nbsp;
-  <img src="../.logos/nodejs.png" height="40">
+  <img src="../.github/logos/python.png" height="40"> &nbsp;&nbsp;
+  <img src="../.github/logos/nodejs.png" height="40">
 </p>
 
 <p align="center">
-  <img src="../.logos/openai.png" height="40"> &nbsp;&nbsp;
-  <img src="../.logos/ollama.png" height="40"> &nbsp;&nbsp;
-  <img src="../.logos/anthropic.png" height="40">
+  <img src="../.github/logos/openai.png" height="40"> &nbsp;&nbsp;
+  <img src="../.github/logos/ollama.png" height="40"> &nbsp;&nbsp;
+  <img src="../.github/logos/anthropic.png" height="40">
 </p>
 
 <p align="center">
-  <img src="../.logos/postgresql.png" height="40"> &nbsp;&nbsp;
-  <img src="../.logos/mongodb.png" height="40">
+  <img src="../.github/logos/postgresql.png" height="40"> &nbsp;&nbsp;
+  <img src="../.github/logos/mongodb.png" height="40">
 </p>
 
 <p align="center">
-  <img src="../.logos/docker.png" height="40"> &nbsp;&nbsp;
-  <img src="../.logos/github.png" height="40">
+  <img src="../.github/logos/docker.png" height="40"> &nbsp;&nbsp;
+  <img src="../.github/logos/github.png" height="40">
 </p>
 
 | Categoría | Recomendado | Alternativo |

@@ -11,7 +11,7 @@
 ---
 
 <p align="center">
-<img src="../.logos/ProMiTierra Logo transparente.png" width="250">
+<img src="../.github/logos/ProMiTierra Logo transparente.png" width="250">
 </p>
 
 ---
