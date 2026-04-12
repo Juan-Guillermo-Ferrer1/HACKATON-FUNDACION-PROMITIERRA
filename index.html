@@ -1215,14 +1215,21 @@
         </div>
     </div>
 
-    <script>
-        // Cargar equipos inscritos desde GitHub
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+        <script>
+        // Config Supabase
+        const SUPABASE_URL = 'https://jpgemhbkmyngxymysqjn.supabase.co';
+        const SUPABASE_KEY = 'sb_publishable_iemLVDaLB8_wR4Ah84TKuw_mgauSUWQ';
+        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+        // Cargar equipos desde Supabase
         async function cargarEquipos() {
             try {
-                const response = await fetch('https://raw.githubusercontent.com/Juan-Guillermo-Ferrer1/HACKATON-FUNDACION-PROMITIERRA/main/Participantes/participantes.json');
-                const equipos = await response.json();
+                const { data: equipos, error } = await supabase.from('participantes').select('*').order('created_at', { ascending: false });
                 
                 const lista = document.getElementById('lista-equipos');
+                
+                if (error) throw error;
                 
                 if (!equipos || equipos.length === 0) {
                     lista.innerHTML = '<div class="no-members">Aún no hay equipos inscritos. ¡Sé el primero!</div>';
@@ -1285,6 +1292,19 @@ ${experiencia}
 ---
 *Inscripción desde página web*`;
 
+            // Guardar en Supabase
+            const integranteList = integrantes.split('\n').filter(i => i.trim());
+            await supabase.from('participantes').insert([{
+                equipo: equipo,
+                integrantes: integranteList,
+                correo: correo,
+                institucion: institucion,
+                edades: edades,
+                skills: skills,
+                categoria: categoria,
+                experiencia: experiencia
+            }]);
+
             // Abrir nueva issue en GitHub
             const title = encodeURIComponent(`[INSCRIPCIÓN] - ${equipo}`);
             const bodyEncoded = encodeURIComponent(body);
@@ -1293,6 +1313,7 @@ ${experiencia}
             window.open(url, '_blank');
             
             showThankYouModal();
+            cargarEquipos();
             e.target.reset();
         });
 
@@ -1337,6 +1358,17 @@ ${descripcion}
 
 ---
 *Publicado desde página web*`;
+            
+            // Guardar en Supabase
+            await supabase.from('busco_equipo').insert([{
+                nombre: nombre,
+                tipo: tipo === 'equipo' ? 'Tengo equipo, necesito integrantes' : 'Busco equipo',
+                rol: rol,
+                skills: skills,
+                correo: correo,
+                descripcion: descripcion
+            }]);
+
             const issueUrl = `https://github.com/Juan-Guillermo-Ferrer1/HACKATON-FUNDACION-PROMITIERRA/issues/new?title=${title}&body=${encodeURIComponent(body)}`;
             window.open(issueUrl, '_blank');
             
