@@ -148,11 +148,31 @@ DockPloy es nuestra plataforma de orquestación. Los proyectos destacados podrá
 
 ---
 
-## 🛠️ Requisitos Técnicos
+## 🛠️ ¿Quién Puede Participar?
 
-- **Lenguajes:** Python 3.10+, Node.js 18+
-- **Entorno:** Docker (para compatibilidad con DockPloy)
-- **IA:** OpenAI, Anthropic u Ollama (modelos locales)
+**¡Este Hackathon es para TODO el público!**
+
+No necesitas ser un experto. Lo importante es:
+- ✅ Tener ganas de aprender
+- ✅ Tener conocimientos básicos en cualquier área tecnológica (programación, diseño, datos, etc.)
+- ✅ Puedes ser principiante, intermedio o avanzado
+- ✅ Tener una idea que quieras desarrollar
+
+**Equipos de 2 a 4 personas**
+
+---
+
+## 🛠️ Herramientas Sugeridas
+
+Estas son algunas tecnologías que puedes usar, pero **puedes usar cualquiera con la que te sientas cómodo**:
+
+- **Lenguajes:** Python, JavaScript, TypeScript, y más
+- **IA:** OpenAI, Anthropic, Ollama, Hugging Face, LangChain
+- **Automatización:** n8n, Zapier, Make
+- **Bases de datos:** PostgreSQL, MongoDB, Firebase
+- **Frontend:** React, Vue, HTML/CSS
+- **Backend:** Node.js, FastAPI, Flask
+- **Contenedores:** Docker (opcional)
 
 ---
 

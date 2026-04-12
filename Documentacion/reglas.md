@@ -1,11 +1,15 @@
 # 📜 Reglas del Hackatón - Fundación ProMiTierra
 
-## 1. Requisitos para Participar
+> *"Este Hackathon es para TODO el público. Lo importante es tener ganas de aprender y crear."*
 
-### Elegibilidad
-- Puede participar cualquier desarrollador individual o equipo (máximo 4 personas)
-- No hay restricciones de edad, género o ubicación geográfica
-- Los participantes deben tener conocimiento básico de programación
+## 1. ¿Quién Puede Participar?
+
+### ¡Todos pueden participar!
+- ✅ No importa la edad, género o ubicación
+- ✅ Puedes ser principiante, intermedio o avanzado
+- ✅ Lo importante es tener ganas de aprender y desarrollar tu idea
+- ✅ No necesitas ser experto en tecnología
+- ✅ Equipos de 2 a 4 personas (o individual)
 
 ### Registro
 1. Los participantes deben crear un repositorio público con su solución
