@@ -242,6 +242,113 @@
             color: var(--primary);
         }
 
+        /* Busco Equipo Section */
+        .busco-equipo {
+            background: linear-gradient(135deg, var(--accent) 0%, #e69400 100%);
+            padding: 35px 40px;
+            margin-top: 30px;
+        }
+
+        .busco-equipo h2 {
+            color: var(--gray-900);
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+
+        .busco-equipo p {
+            color: var(--gray-700);
+            margin-bottom: 20px;
+        }
+
+        .busco-form {
+            background: var(--white);
+            padding: 25px;
+            border-radius: 14px;
+        }
+
+        .busco-form .form-group {
+            margin-bottom: 15px;
+        }
+
+        .busco-form label {
+            font-size: 13px;
+        }
+
+        .busco-form input, .busco-form select, .busco-form textarea {
+            padding: 10px 14px;
+            font-size: 14px;
+        }
+
+        .busco-form .btn {
+            background: var(--primary);
+            color: var(--white);
+            padding: 12px 24px;
+            border: none;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        /* Team List */
+        .team-list {
+            background: var(--white);
+            padding: 25px;
+            border-radius: 14px;
+            margin-top: 25px;
+        }
+
+        .team-list h3 {
+            color: var(--gray-900);
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+
+        .member-card {
+            background: var(--gray-100);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 12px;
+        }
+
+        .member-card .name {
+            font-weight: 600;
+            color: var(--gray-900);
+        }
+
+        .member-card .role {
+            font-size: 13px;
+            color: var(--secondary);
+            margin: 5px 0;
+        }
+
+        .member-card .contact {
+            font-size: 12px;
+            color: var(--gray-500);
+        }
+
+        .member-card .skills {
+            display: flex;
+            gap: 5px;
+            flex-wrap: wrap;
+            margin-top: 8px;
+        }
+
+        .member-card .skills span {
+            background: var(--primary);
+            color: var(--white);
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+        }
+
+        .no-members {
+            text-align: center;
+            color: var(--gray-500);
+            padding: 20px;
+        }
+
         .footer {
             background: var(--primary);
             padding: 25px 30px;
@@ -405,6 +512,58 @@
             </div>
         </form>
 
+        <!-- Busco Equipo Section -->
+        <div class="busco-equipo" id="busco-equipo">
+            <h2>👥 ¿Buscas Equipo?</h2>
+            <p>Si necesitas integrar personas a tu equipo o quieres unirte a uno, ¡publica aquí!</p>
+            
+            <div class="busco-form">
+                <div class="form-group">
+                    <label>Tu nombre <span class="required">*</span></label>
+                    <input type="text" id="busco-nombre" placeholder="Juan Pérez" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>Qué buscas? <span class="required">*</span></label>
+                    <select id="busco-tipo">
+                        <option value="equipo">Tengo equipo, necesito integrante</option>
+                        <option value="integrante">No tengo equipo, quiero unirme</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label>Tu rol / Qué haces? <span class="required">*</span></label>
+                    <input type="text" id="busco-rol" placeholder="Desarrollador, Diseño, Ideas, Gestion" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>Skills / Conocimientos</label>
+                    <input type="text" id="busco-skills" placeholder="Python, Diseño, Liderazgo">
+                </div>
+                
+                <div class="form-group">
+                    <label>Correo <span class="required">*</span></label>
+                    <input type="email" id="busco-correo" placeholder="tu@email.com" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>Descripción breve</label>
+                    <textarea id="busco-descripcion" rows="2" placeholder="Busco equipo para proyecto de IA sobre educación..."></textarea>
+                </div>
+                
+                <button type="button" class="btn" onclick="publicarBuscoEquipo()">📢 Publicar</button>
+            </div>
+
+            <div class="team-list">
+                <h3>👨‍💻 Personas buscando equipo</h3>
+                <div id="lista-integrantes">
+                    <div class="no-members">
+                       Aún no hay publicaciones. ¡Sé el primero!
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="footer">
             <p><strong>🏛️ Fundación ProMiTierra</strong> - Innovación con Sentido Humano</p>
             <div>
@@ -420,6 +579,56 @@
             e.preventDefault();
             alert('¡Inscripción enviada!');
         });
+
+        // Busco Equipo functionality
+        let integranteData = [];
+
+        function publicarBuscoEquipo() {
+            const nombre = document.getElementById('busco-nombre').value;
+            const tipo = document.getElementById('busco-tipo').value;
+            const rol = document.getElementById('busco-rol').value;
+            const skills = document.getElementById('busco-skills').value;
+            const correo = document.getElementById('busco-correo').value;
+            const descripcion = document.getElementById('busco-descripcion').value;
+
+            if (!nombre || !rol || !correo) {
+                alert('Por favor completa los campos obligatorios');
+                return;
+            }
+
+            const nuevo = { nombre, tipo, rol, skills, correo, descripcion };
+            integranteData.push(nuevo);
+            
+            actualizarLista();
+            
+            // Limpiar formulario
+            document.getElementById('busco-nombre').value = '';
+            document.getElementById('busco-rol').value = '';
+            document.getElementById('busco-skills').value = '';
+            document.getElementById('busco-correo').value = '';
+            document.getElementById('busco-descripcion').value = '';
+
+            alert('¡Publicación creada! revisa la lista abajo.');
+        }
+
+        function actualizarLista() {
+            const lista = document.getElementById('lista-integrantes');
+            
+            if (integranteData.length === 0) {
+                lista.innerHTML = '<div class="no-members">Aún no hay publicaciones. ¡Sé el primero!</div>';
+                return;
+            }
+
+            lista.innerHTML = integranteData.map(p => `
+                <div class="member-card">
+                    <div class="name">${p.nombre} ${p.tipo === 'equipo' ? '🔽 Busca miembro' : '🔼 Tiene equipo'}</div>
+                    <div class="role">${p.rol}</div>
+                    <div class="contact">📧 ${p.correo}</div>
+                    ${p.skills ? `<div class="skills">${p.skills.split(',').map(s => `<span>${s.trim()}</span>`).join('')}</div>` : ''}
+                    ${p.descripcion ? `<p style="margin-top:8px;font-size:13px;color:#666">${p.descripcion}</p>` : ''}
+                </div>
+            `).join('');
+        }
     </script>
 </body>
 </html>
