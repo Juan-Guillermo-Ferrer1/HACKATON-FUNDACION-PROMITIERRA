@@ -97,22 +97,33 @@ jobs:
                 '¿Ya tienes experiencia programando?': 'experiencia'
             }
             
+            current_field = None
             for line in lines:
                 line = line.strip()
+                if not line:
+                    continue
+                # Detect section headers
+                matched = False
                 for field_name, field_key in field_mapping.items():
                     if line == f'## {field_name}' or line == f'## {field_name}\r':
                         current_field = field_key
+                        matched = True
                         break
-                else:
-                    if line.startswith('- [x]'):
-                        value = line.replace('- [x]', '').strip()
-                        if current_field in ['categoria', 'experiencia']:
-                            data[current_field] = value
-                    elif line and not line.startswith('## ') and not line.startswith('- [ ]'):
-                        if current_field == 'integrantes':
-                            data['integrantes'].append(line)
-                        elif current_field and line:
-                            data[current_field] = line
+                if matched:
+                    continue
+                # Skip separator lines and footnotes
+                if line.startswith('---') or line.startswith('*') or line.startswith('- [ ]'):
+                    continue
+                # Parse checkbox (from manual issue template)
+                if line.startswith('- [x]'):
+                    value = line.replace('- [x]', '').strip()
+                    if current_field in ['categoria', 'experiencia']:
+                        data[current_field] = value
+                elif current_field:
+                    if current_field == 'integrantes':
+                        data['integrantes'].append(line)
+                    else:
+                        data[current_field] = line
             
             nombre_integrantes = data['integrantes']
             correo = data['correo']

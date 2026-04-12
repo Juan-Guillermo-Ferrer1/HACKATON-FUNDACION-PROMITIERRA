@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inscripción - Hackathon ProMiTierra 2026</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: #e722f2;
@@ -12,1352 +12,554 @@
             --secondary: #00d4ff;
             --accent: #00fff2;
             --white: #ffffff;
-            --gray-100: #1a1a2e;
-            --gray-200: #2a2a4e;
-            --gray-500: #8888aa;
-            --gray-700: #aaaacc;
-            --gray-900: #eeeeff;
             --neon-bg: #0a0a12;
             --neon-purple: #e722f2;
-            --neon-purple-light: #b517c7;
-            --neon-blue: #00d4ff;
             --neon-cyan: #00fff2;
+            --neon-blue: #00d4ff;
             --container-bg: #1a1a2e;
+            --card-bg: #12122a;
+            --input-bg: #0f0f20;
+            --border: rgba(231, 34, 242, 0.25);
             --text-color: #f0f0ff;
+            --muted: #8888aa;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
+        /* ── Animated background ── */
         .dots-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            overflow: hidden;
-            z-index: -1;
+            position: fixed; top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            overflow: hidden; z-index: -1;
             background: var(--neon-bg);
         }
-
         .dots-container {
-            position: absolute;
-            top: 50%;
-            left: 50%;
+            position: absolute; top: 50%; left: 50%;
             transform: translate(-50%, -50%);
-            width: calc(100vw + 8vw);
-            height: calc(100vw + 8vw);
+            width: calc(100vw + 8vw); height: calc(100vw + 8vw);
             display: grid;
             grid-template-columns: repeat(12, 1fr);
             grid-template-rows: repeat(12, 1fr);
         }
-
-        .square {
-            position: relative;
+        .square { position: relative; }
+        .square::before, .square::after {
+            content: ''; position: absolute; display: block;
+            background: var(--neon-purple); border-radius: 4px;
         }
-
-        .square::before,
-        .square::after {
-            content: '';
-            position: absolute;
-            display: block;
-            background: var(--neon-purple);
-            border-radius: 4px;
-        }
-
         .square::before {
-            top: 0;
-            left: calc(0.875vw + 1.5vw);
-            width: calc(100% - 1.75vw - 3vw);
-            height: 2px;
-            transform: translateY(-50%) rotate(0deg);
+            top: 0; left: calc(0.875vw + 1.5vw);
+            width: calc(100% - 1.75vw - 3vw); height: 2px;
+            transform: translateY(-50%);
             animation: lineYpulse 2.5s infinite alternate-reverse ease-in;
         }
-
         .square::after {
-            top: calc(0.875vw + 1.5vw);
-            left: 0;
-            width: 2px;
-            height: calc(100% - 1.75vw - 3vw);
-            transform: translateX(-50%) rotate(0deg);
+            top: calc(0.875vw + 1.5vw); left: 0;
+            width: 2px; height: calc(100% - 1.75vw - 3vw);
+            transform: translateX(-50%);
             animation: lineXpulse 2.5s infinite alternate-reverse ease-in;
         }
-
         .dot {
-            position: absolute;
-            width: 1.75vw;
-            height: 1.75vw;
-            background: var(--neon-cyan);
-            border-radius: 50%;
+            position: absolute; width: 1.75vw; height: 1.75vw;
+            background: var(--neon-cyan); border-radius: 50%;
             transform: translate(-50%, -50%);
             animation: dotPulse 2.5s infinite alternate ease-in;
             box-shadow: 0 0 10px var(--neon-blue), 0 0 20px var(--neon-blue);
         }
-
         .dot:last-child {
-            top: 50%;
-            left: 50%;
+            top: 50%; left: 50%;
             transform: translate(-50%, -50%) scale(0.5);
             animation-direction: alternate-reverse;
             background: var(--neon-purple);
             box-shadow: 0 0 10px var(--neon-purple), 0 0 20px var(--neon-purple);
         }
+        /* opcaity/delay stagger for 144 squares */
+        .square:nth-child(n+1):nth-child(-n+12) .dot,.square:nth-child(n+1):nth-child(-n+12)::before,.square:nth-child(n+1):nth-child(-n+12)::after{opacity:0}
+        .square:nth-child(n+13):nth-child(-n+24) .dot,.square:nth-child(n+13):nth-child(-n+24)::before,.square:nth-child(n+13):nth-child(-n+24)::after{opacity:.1}
+        .square:nth-child(n+25):nth-child(-n+48) .dot,.square:nth-child(n+25):nth-child(-n+48)::before,.square:nth-child(n+25):nth-child(-n+48)::after{opacity:.2}
+        .square:nth-child(n+49):nth-child(-n+72) .dot,.square:nth-child(n+49):nth-child(-n+72)::before,.square:nth-child(n+49):nth-child(-n+72)::after{opacity:.4}
+        .square:nth-child(n+73):nth-child(-n+108) .dot,.square:nth-child(n+73):nth-child(-n+108)::before,.square:nth-child(n+73):nth-child(-n+108)::after{opacity:.6}
+        .square:nth-child(n+109):nth-child(-n+132) .dot,.square:nth-child(n+109):nth-child(-n+132)::before,.square:nth-child(n+109):nth-child(-n+132)::after{opacity:.85}
+        .square:nth-child(n+133) .dot,.square:nth-child(n+133)::before,.square:nth-child(n+133)::after{opacity:1}
 
-        .square:nth-child(1)::before, .square:nth-child(1)::after, .square:nth-child(1) .dot { opacity: 0; animation-delay: -3s; }
-        .square:nth-child(2)::before, .square:nth-child(2)::after, .square:nth-child(2) .dot { opacity: 0; animation-delay: -2.9s; }
-        .square:nth-child(3)::before, .square:nth-child(3)::after, .square:nth-child(3) .dot { opacity: 0; animation-delay: -2.8s; }
-        .square:nth-child(4)::before, .square:nth-child(4)::after, .square:nth-child(4) .dot { opacity: 0; animation-delay: -2.7s; }
-        .square:nth-child(5)::before, .square:nth-child(5)::after, .square:nth-child(5) .dot { opacity: 0; animation-delay: -2.6s; }
-        .square:nth-child(6)::before, .square:nth-child(6)::after, .square:nth-child(6) .dot { opacity: 0; animation-delay: -2.5s; }
-        .square:nth-child(7)::before, .square:nth-child(7)::after, .square:nth-child(7) .dot { opacity: 0; animation-delay: -2.4s; }
-        .square:nth-child(8)::before, .square:nth-child(8)::after, .square:nth-child(8) .dot { opacity: 0; animation-delay: -2.3s; }
-        .square:nth-child(9)::before, .square:nth-child(9)::after, .square:nth-child(9) .dot { opacity: 0; animation-delay: -2.2s; }
-        .square:nth-child(10)::before, .square:nth-child(10)::after, .square:nth-child(10) .dot { opacity: 0; animation-delay: -2.1s; }
-        .square:nth-child(11)::before, .square:nth-child(11)::after, .square:nth-child(11) .dot { opacity: 0; animation-delay: -2s; }
-        .square:nth-child(12)::before, .square:nth-child(12)::after, .square:nth-child(12) .dot { opacity: 0; animation-delay: -1.9s; }
-        .square:nth-child(13)::before, .square:nth-child(13)::after, .square:nth-child(13) .dot { opacity: 0.1; animation-delay: -1.8s; }
-        .square:nth-child(14)::before, .square:nth-child(14)::after, .square:nth-child(14) .dot { opacity: 0.1; animation-delay: -1.7s; }
-        .square:nth-child(15)::before, .square:nth-child(15)::after, .square:nth-child(15) .dot { opacity: 0.1; animation-delay: -1.6s; }
-        .square:nth-child(16)::before, .square:nth-child(16)::after, .square:nth-child(16) .dot { opacity: 0.1; animation-delay: -1.5s; }
-        .square:nth-child(17)::before, .square:nth-child(17)::after, .square:nth-child(17) .dot { opacity: 0.1; animation-delay: -1.4s; }
-        .square:nth-child(18)::before, .square:nth-child(18)::after, .square:nth-child(18) .dot { opacity: 0.1; animation-delay: -1.3s; }
-        .square:nth-child(19)::before, .square:nth-child(19)::after, .square:nth-child(19) .dot { opacity: 0.1; animation-delay: -1.2s; }
-        .square:nth-child(20)::before, .square:nth-child(20)::after, .square:nth-child(20) .dot { opacity: 0.1; animation-delay: -1.1s; }
-        .square:nth-child(21)::before, .square:nth-child(21)::after, .square:nth-child(21) .dot { opacity: 0.1; animation-delay: -1s; }
-        .square:nth-child(22)::before, .square:nth-child(22)::after, .square:nth-child(22) .dot { opacity: 0.1; animation-delay: -0.9s; }
-        .square:nth-child(23)::before, .square:nth-child(23)::after, .square:nth-child(23) .dot { opacity: 0.2; animation-delay: -0.8s; }
-        .square:nth-child(24)::before, .square:nth-child(24)::after, .square:nth-child(24) .dot { opacity: 0.2; animation-delay: -0.7s; }
-        .square:nth-child(25)::before, .square:nth-child(25)::after, .square:nth-child(25) .dot { opacity: 0.2; animation-delay: -0.6s; }
-        .square:nth-child(26)::before, .square:nth-child(26)::after, .square:nth-child(26) .dot { opacity: 0.2; animation-delay: -0.5s; }
-        .square:nth-child(27)::before, .square:nth-child(27)::after, .square:nth-child(27) .dot { opacity: 0.2; animation-delay: -0.4s; }
-        .square:nth-child(28)::before, .square:nth-child(28)::after, .square:nth-child(28) .dot { opacity: 0.2; animation-delay: -0.3s; }
-        .square:nth-child(29)::before, .square:nth-child(29)::after, .square:nth-child(29) .dot { opacity: 0.2; animation-delay: -0.2s; }
-        .square:nth-child(30)::before, .square:nth-child(30)::after, .square:nth-child(30) .dot { opacity: 0.2; animation-delay: -0.1s; }
-        .square:nth-child(31)::before, .square:nth-child(31)::after, .square:nth-child(31) .dot { opacity: 0.3; animation-delay: 0s; }
-        .square:nth-child(32)::before, .square:nth-child(32)::after, .square:nth-child(32) .dot { opacity: 0.3; animation-delay: -2.4s; }
-        .square:nth-child(33)::before, .square:nth-child(33)::after, .square:nth-child(33) .dot { opacity: 0.3; animation-delay: -2.3s; }
-        .square:nth-child(34)::before, .square:nth-child(34)::after, .square:nth-child(34) .dot { opacity: 0.3; animation-delay: -2.2s; }
-        .square:nth-child(35)::before, .square:nth-child(35)::after, .square:nth-child(35) .dot { opacity: 0.3; animation-delay: -2.1s; }
-        .square:nth-child(36)::before, .square:nth-child(36)::after, .square:nth-child(36) .dot { opacity: 0.3; animation-delay: -2s; }
-        .square:nth-child(37)::before, .square:nth-child(37)::after, .square:nth-child(37) .dot { opacity: 0.3; animation-delay: -1.9s; }
-        .square:nth-child(38)::before, .square:nth-child(38)::after, .square:nth-child(38) .dot { opacity: 0.3; animation-delay: -1.8s; }
-        .square:nth-child(39)::before, .square:nth-child(39)::after, .square:nth-child(39) .dot { opacity: 0.3; animation-delay: -1.7s; }
-        .square:nth-child(40)::before, .square:nth-child(40)::after, .square:nth-child(40) .dot { opacity: 0.3; animation-delay: -1.6s; }
-        .square:nth-child(41)::before, .square:nth-child(41)::after, .square:nth-child(41) .dot { opacity: 0.3; animation-delay: -1.5s; }
-        .square:nth-child(42)::before, .square:nth-child(42)::after, .square:nth-child(42) .dot { opacity: 0.3; animation-delay: -1.4s; }
-        .square:nth-child(43)::before, .square:nth-child(43)::after, .square:nth-child(43) .dot { opacity: 0.4; animation-delay: -1.3s; }
-        .square:nth-child(44)::before, .square:nth-child(44)::after, .square:nth-child(44) .dot { opacity: 0.4; animation-delay: -1.2s; }
-        .square:nth-child(45)::before, .square:nth-child(45)::after, .square:nth-child(45) .dot { opacity: 0.4; animation-delay: -1.1s; }
-        .square:nth-child(46)::before, .square:nth-child(46)::after, .square:nth-child(46) .dot { opacity: 0.4; animation-delay: -1s; }
-        .square:nth-child(47)::before, .square:nth-child(47)::after, .square:nth-child(47) .dot { opacity: 0.4; animation-delay: -0.9s; }
-        .square:nth-child(48)::before, .square:nth-child(48)::after, .square:nth-child(48) .dot { opacity: 0.4; animation-delay: -0.8s; }
-        .square:nth-child(49)::before, .square:nth-child(49)::after, .square:nth-child(49) .dot { opacity: 0.4; animation-delay: -0.7s; }
-        .square:nth-child(50)::before, .square:nth-child(50)::after, .square:nth-child(50) .dot { opacity: 0.4; animation-delay: -0.6s; }
-        .square:nth-child(51)::before, .square:nth-child(51)::after, .square:nth-child(51) .dot { opacity: 0.4; animation-delay: -0.5s; }
-        .square:nth-child(52)::before, .square:nth-child(52)::after, .square:nth-child(52) .dot { opacity: 0.4; animation-delay: -0.4s; }
-        .square:nth-child(53)::before, .square:nth-child(53)::after, .square:nth-child(53) .dot { opacity: 0.5; animation-delay: -0.3s; }
-        .square:nth-child(54)::before, .square:nth-child(54)::after, .square:nth-child(54) .dot { opacity: 0.5; animation-delay: -0.2s; }
-        .square:nth-child(55)::before, .square:nth-child(55)::after, .square:nth-child(55) .dot { opacity: 0.5; animation-delay: -0.1s; }
-        .square:nth-child(56)::before, .square:nth-child(56)::after, .square:nth-child(56) .dot { opacity: 0.5; animation-delay: 0s; }
-        .square:nth-child(57)::before, .square:nth-child(57)::after, .square:nth-child(57) .dot { opacity: 0.5; animation-delay: -2.4s; }
-        .square:nth-child(58)::before, .square:nth-child(58)::after, .square:nth-child(58) .dot { opacity: 0.5; animation-delay: -2.3s; }
-        .square:nth-child(59)::before, .square:nth-child(59)::after, .square:nth-child(59) .dot { opacity: 0.5; animation-delay: -2.2s; }
-        .square:nth-child(60)::before, .square:nth-child(60)::after, .square:nth-child(60) .dot { opacity: 0.5; animation-delay: -2.1s; }
-        .square:nth-child(61)::before, .square:nth-child(61)::after, .square:nth-child(61) .dot { opacity: 0.5; animation-delay: -2s; }
-        .square:nth-child(62)::before, .square:nth-child(62)::after, .square:nth-child(62) .dot { opacity: 0.5; animation-delay: -1.9s; }
-        .square:nth-child(63)::before, .square:nth-child(63)::after, .square:nth-child(63) .dot { opacity: 0.5; animation-delay: -1.8s; }
-        .square:nth-child(64)::before, .square:nth-child(64)::after, .square:nth-child(64) .dot { opacity: 0.5; animation-delay: -1.7s; }
-        .square:nth-child(65)::before, .square:nth-child(65)::after, .square:nth-child(65) .dot { opacity: 0.5; animation-delay: -1.6s; }
-        .square:nth-child(66)::before, .square:nth-child(66)::after, .square:nth-child(66) .dot { opacity: 0.5; animation-delay: -1.5s; }
-        .square:nth-child(67)::before, .square:nth-child(67)::after, .square:nth-child(67) .dot { opacity: 0.5; animation-delay: -1.4s; }
-        .square:nth-child(68)::before, .square:nth-child(68)::after, .square:nth-child(68) .dot { opacity: 0.5; animation-delay: -1.3s; }
-        .square:nth-child(69)::before, .square:nth-child(69)::after, .square:nth-child(69) .dot { opacity: 0.5; animation-delay: -1.2s; }
-        .square:nth-child(70)::before, .square:nth-child(70)::after, .square:nth-child(70) .dot { opacity: 0.5; animation-delay: -1.1s; }
-        .square:nth-child(71)::before, .square:nth-child(71)::after, .square:nth-child(71) .dot { opacity: 0.5; animation-delay: -1s; }
-        .square:nth-child(72)::before, .square:nth-child(72)::after, .square:nth-child(72) .dot { opacity: 0.5; animation-delay: -0.9s; }
-        .square:nth-child(73)::before, .square:nth-child(73)::after, .square:nth-child(73) .dot { opacity: 0.6; animation-delay: -0.8s; }
-        .square:nth-child(74)::before, .square:nth-child(74)::after, .square:nth-child(74) .dot { opacity: 0.6; animation-delay: -0.7s; }
-        .square:nth-child(75)::before, .square:nth-child(75)::after, .square:nth-child(75) .dot { opacity: 0.6; animation-delay: -0.6s; }
-        .square:nth-child(76)::before, .square:nth-child(76)::after, .square:nth-child(76) .dot { opacity: 0.6; animation-delay: -0.5s; }
-        .square:nth-child(77)::before, .square:nth-child(77)::after, .square:nth-child(77) .dot { opacity: 0.6; animation-delay: -0.4s; }
-        .square:nth-child(78)::before, .square:nth-child(78)::after, .square:nth-child(78) .dot { opacity: 0.6; animation-delay: -0.3s; }
-        .square:nth-child(79)::before, .square:nth-child(79)::after, .square:nth-child(79) .dot { opacity: 0.6; animation-delay: -0.2s; }
-        .square:nth-child(80)::before, .square:nth-child(80)::after, .square:nth-child(80) .dot { opacity: 0.6; animation-delay: -0.1s; }
-        .square:nth-child(81)::before, .square:nth-child(81)::after, .square:nth-child(81) .dot { opacity: 0.6; animation-delay: 0s; }
-        .square:nth-child(82)::before, .square:nth-child(82)::after, .square:nth-child(82) .dot { opacity: 0.6; animation-delay: -2.4s; }
-        .square:nth-child(83)::before, .square:nth-child(83)::after, .square:nth-child(83) .dot { opacity: 0.6; animation-delay: -2.3s; }
-        .square:nth-child(84)::before, .square:nth-child(84)::after, .square:nth-child(84) .dot { opacity: 0.6; animation-delay: -2.2s; }
-        .square:nth-child(85)::before, .square:nth-child(85)::after, .square:nth-child(85) .dot { opacity: 0.6; animation-delay: -2.1s; }
-        .square:nth-child(86)::before, .square:nth-child(86)::after, .square:nth-child(86) .dot { opacity: 0.6; animation-delay: -2s; }
-        .square:nth-child(87)::before, .square:nth-child(87)::after, .square:nth-child(87) .dot { opacity: 0.6; animation-delay: -1.9s; }
-        .square:nth-child(88)::before, .square:nth-child(88)::after, .square:nth-child(88) .dot { opacity: 0.6; animation-delay: -1.8s; }
-        .square:nth-child(89)::before, .square:nth-child(89)::after, .square:nth-child(89) .dot { opacity: 0.6; animation-delay: -1.7s; }
-        .square:nth-child(90)::before, .square:nth-child(90)::after, .square:nth-child(90) .dot { opacity: 0.6; animation-delay: -1.6s; }
-        .square:nth-child(91)::before, .square:nth-child(91)::after, .square:nth-child(91) .dot { opacity: 0.6; animation-delay: -1.5s; }
-        .square:nth-child(92)::before, .square:nth-child(92)::after, .square:nth-child(92) .dot { opacity: 0.6; animation-delay: -1.4s; }
-        .square:nth-child(93)::before, .square:nth-child(93)::after, .square:nth-child(93) .dot { opacity: 0.7; animation-delay: -1.3s; }
-        .square:nth-child(94)::before, .square:nth-child(94)::after, .square:nth-child(94) .dot { opacity: 0.7; animation-delay: -1.2s; }
-        .square:nth-child(95)::before, .square:nth-child(95)::after, .square:nth-child(95) .dot { opacity: 0.7; animation-delay: -1.1s; }
-        .square:nth-child(96)::before, .square:nth-child(96)::after, .square:nth-child(96) .dot { opacity: 0.7; animation-delay: -1s; }
-        .square:nth-child(97)::before, .square:nth-child(97)::after, .square:nth-child(97) .dot { opacity: 0.7; animation-delay: -0.9s; }
-        .square:nth-child(98)::before, .square:nth-child(98)::after, .square:nth-child(98) .dot { opacity: 0.7; animation-delay: -0.8s; }
-        .square:nth-child(99)::before, .square:nth-child(99)::after, .square:nth-child(99) .dot { opacity: 0.7; animation-delay: -0.7s; }
-        .square:nth-child(100)::before, .square:nth-child(100)::after, .square:nth-child(100) .dot { opacity: 0.7; animation-delay: -0.6s; }
-        .square:nth-child(101)::before, .square:nth-child(101)::after, .square:nth-child(101) .dot { opacity: 0.7; animation-delay: -0.5s; }
-        .square:nth-child(102)::before, .square:nth-child(102)::after, .square:nth-child(102) .dot { opacity: 0.7; animation-delay: -0.4s; }
-        .square:nth-child(103)::before, .square:nth-child(103)::after, .square:nth-child(103) .dot { opacity: 0.7; animation-delay: -0.3s; }
-        .square:nth-child(104)::before, .square:nth-child(104)::after, .square:nth-child(104) .dot { opacity: 0.7; animation-delay: -0.2s; }
-        .square:nth-child(105)::before, .square:nth-child(105)::after, .square:nth-child(105) .dot { opacity: 0.7; animation-delay: -0.1s; }
-        .square:nth-child(106)::before, .square:nth-child(106)::after, .square:nth-child(106) .dot { opacity: 0.7; animation-delay: 0s; }
-        .square:nth-child(107)::before, .square:nth-child(107)::after, .square:nth-child(107) .dot { opacity: 0.8; animation-delay: -2.4s; }
-        .square:nth-child(108)::before, .square:nth-child(108)::after, .square:nth-child(108) .dot { opacity: 0.8; animation-delay: -2.3s; }
-        .square:nth-child(109)::before, .square:nth-child(109)::after, .square:nth-child(109) .dot { opacity: 0.8; animation-delay: -2.2s; }
-        .square:nth-child(110)::before, .square:nth-child(110)::after, .square:nth-child(110) .dot { opacity: 0.8; animation-delay: -2.1s; }
-        .square:nth-child(111)::before, .square:nth-child(111)::after, .square:nth-child(111) .dot { opacity: 0.8; animation-delay: -2s; }
-        .square:nth-child(112)::before, .square:nth-child(112)::after, .square:nth-child(112) .dot { opacity: 0.8; animation-delay: -1.9s; }
-        .square:nth-child(113)::before, .square:nth-child(113)::after, .square:nth-child(113) .dot { opacity: 0.8; animation-delay: -1.8s; }
-        .square:nth-child(114)::before, .square:nth-child(114)::after, .square:nth-child(114) .dot { opacity: 0.8; animation-delay: -1.7s; }
-        .square:nth-child(115)::before, .square:nth-child(115)::after, .square:nth-child(115) .dot { opacity: 0.8; animation-delay: -1.6s; }
-        .square:nth-child(116)::before, .square:nth-child(116)::after, .square:nth-child(116) .dot { opacity: 0.8; animation-delay: -1.5s; }
-        .square:nth-child(117)::before, .square:nth-child(117)::after, .square:nth-child(117) .dot { opacity: 0.8; animation-delay: -1.4s; }
-        .square:nth-child(118)::before, .square:nth-child(118)::after, .square:nth-child(118) .dot { opacity: 0.8; animation-delay: -1.3s; }
-        .square:nth-child(119)::before, .square:nth-child(119)::after, .square:nth-child(119) .dot { opacity: 0.9; animation-delay: -1.2s; }
-        .square:nth-child(120)::before, .square:nth-child(120)::after, .square:nth-child(120) .dot { opacity: 0.9; animation-delay: -1.1s; }
-        .square:nth-child(121)::before, .square:nth-child(121)::after, .square:nth-child(121) .dot { opacity: 0.9; animation-delay: -1s; }
-        .square:nth-child(122)::before, .square:nth-child(122)::after, .square:nth-child(122) .dot { opacity: 0.9; animation-delay: -0.9s; }
-        .square:nth-child(123)::before, .square:nth-child(123)::after, .square:nth-child(123) .dot { opacity: 0.9; animation-delay: -0.8s; }
-        .square:nth-child(124)::before, .square:nth-child(124)::after, .square:nth-child(124) .dot { opacity: 0.9; animation-delay: -0.7s; }
-        .square:nth-child(125)::before, .square:nth-child(125)::after, .square:nth-child(125) .dot { opacity: 0.9; animation-delay: -0.6s; }
-        .square:nth-child(126)::before, .square:nth-child(126)::after, .square:nth-child(126) .dot { opacity: 0.9; animation-delay: -0.5s; }
-        .square:nth-child(127)::before, .square:nth-child(127)::after, .square:nth-child(127) .dot { opacity: 0.9; animation-delay: -0.4s; }
-        .square:nth-child(128)::before, .square:nth-child(128)::after, .square:nth-child(128) .dot { opacity: 0.9; animation-delay: -0.3s; }
-        .square:nth-child(129)::before, .square:nth-child(129)::after, .square:nth-child(129) .dot { opacity: 0.9; animation-delay: -0.2s; }
-        .square:nth-child(130)::before, .square:nth-child(130)::after, .square:nth-child(130) .dot { opacity: 0.9; animation-delay: -0.1s; }
-        .square:nth-child(131)::before, .square:nth-child(131)::after, .square:nth-child(131) .dot { opacity: 0.9; animation-delay: 0s; }
-        .square:nth-child(132)::before, .square:nth-child(132)::after, .square:nth-child(132) .dot { opacity: 1; animation-delay: -2.4s; }
-        .square:nth-child(133)::before, .square:nth-child(133)::after, .square:nth-child(133) .dot { opacity: 1; animation-delay: -2.3s; }
-        .square:nth-child(134)::before, .square:nth-child(134)::after, .square:nth-child(134) .dot { opacity: 1; animation-delay: -2.2s; }
-        .square:nth-child(135)::before, .square:nth-child(135)::after, .square:nth-child(135) .dot { opacity: 1; animation-delay: -2.1s; }
-        .square:nth-child(136)::before, .square:nth-child(136)::after, .square:nth-child(136) .dot { opacity: 1; animation-delay: -2s; }
-        .square:nth-child(137)::before, .square:nth-child(137)::after, .square:nth-child(137) .dot { opacity: 1; animation-delay: -1.9s; }
-        .square:nth-child(138)::before, .square:nth-child(138)::after, .square:nth-child(138) .dot { opacity: 1; animation-delay: -1.8s; }
-        .square:nth-child(139)::before, .square:nth-child(139)::after, .square:nth-child(139) .dot { opacity: 1; animation-delay: -1.7s; }
-        .square:nth-child(140)::before, .square:nth-child(140)::after, .square:nth-child(140) .dot { opacity: 1; animation-delay: -1.6s; }
-        .square:nth-child(141)::before, .square:nth-child(141)::after, .square:nth-child(141) .dot { opacity: 1; animation-delay: -1.5s; }
-        .square:nth-child(142)::before, .square:nth-child(142)::after, .square:nth-child(142) .dot { opacity: 1; animation-delay: -1.4s; }
-        .square:nth-child(143)::before, .square:nth-child(143)::after, .square:nth-child(143) .dot { opacity: 1; animation-delay: -1.3s; }
-        .square:nth-child(144)::before, .square:nth-child(144)::after, .square:nth-child(144) .dot { opacity: 1; animation-delay: -1.2s; }
+        @keyframes dotPulse { 0%,35%{transform:translate3d(-50%,-50%,0) scale(0)} 65%,100%{transform:translate3d(-50%,-50%,0) scale(1)} }
+        @keyframes lineXpulse { 0%,35%{transform:translate3d(-50%,0,0) rotate(0deg)} 65%,100%{transform:translate3d(-50%,0,0) rotate(90deg)} }
+        @keyframes lineYpulse { 0%,35%{transform:translate3d(0,-50%,0) rotate(0deg)} 65%,100%{transform:translate3d(0,-50%,0) rotate(90deg)} }
 
-        @keyframes dotPulse {
-            0%, 35% {
-                transform: translate3d(-50%, -50%, 0) scale(0);
-            }
-            65%, 100% {
-                transform: translate3d(-50%, -50%, 0) scale(1);
-            }
-        }
-
-        @keyframes lineXpulse {
-            0%, 35% {
-                transform: translate3d(-50%, 0, 0) rotate(0deg);
-            }
-            65%, 100% {
-                transform: translate3d(-50%, 0, 0) rotate(90deg);
-            }
-        }
-
-        @keyframes lineYpulse {
-            0%, 35% {
-                transform: translate3d(0, -50%, 0) rotate(0deg);
-            }
-            65%, 100% {
-                transform: translate3d(0, -50%, 0) rotate(90deg);
-            }
-        }
-
+        /* ── Layout ── */
         body {
-            font-family: 'Poppins', 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
-            min-height: 100vh;
-            padding: 20px;
-            line-height: 1.6;
+            font-family: 'Poppins', system-ui, sans-serif;
+            min-height: 100vh; padding: 20px; line-height: 1.6;
         }
-
-.container {
-            max-width: 700px;
-            margin: 20px auto;
+        .container {
+            max-width: 720px; margin: 20px auto;
             background: var(--container-bg);
-            border-radius: 24px;
-            overflow: hidden;
-            box-shadow: 0 0 40px rgba(231, 34, 242, 0.2), 0 25px 80px rgba(0,0,0,0.4);
-            border: 1px solid rgba(231, 34, 242, 0.3);
+            border-radius: 24px; overflow: hidden;
+            box-shadow: 0 0 40px rgba(231,34,242,.2), 0 25px 80px rgba(0,0,0,.5);
+            border: 1px solid var(--border);
+            animation: fadeIn .6s ease-out;
         }
 
+        /* ── Header ── */
         .header {
-            background: linear-gradient(135deg, #1a1a2e 0%, #0f0f1a 100%);
-            color: var(--white);
-            padding: 35px 30px;
+            background: linear-gradient(135deg, #1a1a2e 0%, #0c0c1e 100%);
+            color: var(--white); padding: 35px 30px;
             text-align: center;
             border-bottom: 3px solid var(--neon-cyan);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            display: flex; flex-direction: column; align-items: center; gap: 8px;
+        }
+        .header .logo-wrap {
+            width: 72px; height: 72px; border-radius: 50%;
+            background: rgba(0,255,242,.08);
+            border: 2px solid rgba(0,255,242,.3);
+            display: flex; align-items: center; justify-content: center;
+            margin-bottom: 4px;
+            box-shadow: 0 0 20px rgba(0,255,242,.25);
+        }
+        .header .logo-wrap img {
+            width: 56px; height: 56px; object-fit: contain; border-radius: 50%;
+        }
+        .header .brand { font-size: 13px; color: var(--neon-cyan); letter-spacing: 1px; text-transform: uppercase; }
+        .header h1 { font-size: 26px; font-weight: 800; text-shadow: 0 0 20px var(--neon-cyan); }
+        .header .subtitle { font-size: 15px; color: var(--neon-cyan); opacity: .9; }
+        .badge {
+            display: inline-block; padding: 5px 16px;
+            background: rgba(0,255,242,.15); border: 1px solid rgba(0,255,242,.3);
+            border-radius: 20px; font-size: 13px; color: var(--neon-cyan);
         }
 
-        .header h1 {
-            font-size: 26px;
-            font-weight: 700;
-            margin-bottom: 8px;
-            text-shadow: 0 0 20px var(--neon-cyan);
-            margin-top: 5px;
+        /* ── Info bar ── */
+        .info-bar {
+            display: flex; justify-content: space-around; padding: 18px 30px;
+            background: rgba(231,34,242,.08);
+            border-bottom: 1px solid rgba(231,34,242,.2);
+            flex-wrap: wrap; gap: 12px;
+        }
+        .info-item { text-align: center; min-width: 80px; }
+        .info-item .label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
+        .info-item .value { font-size: 15px; font-weight: 700; color: var(--neon-cyan); }
+
+        /* ── Tech strip ── */
+        .tech-section {
+            padding: 18px 30px; background: var(--card-bg); text-align: center;
+        }
+        .tech-section h3 { font-size: 11px; color: var(--muted); letter-spacing: 2px; margin-bottom: 12px; text-transform: uppercase; }
+        .tech-icons { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+        .tech-icons span {
+            padding: 6px 14px; background: rgba(0,212,255,.08);
+            border: 1px solid rgba(0,212,255,.2);
+            border-radius: 20px; font-size: 12px; color: var(--neon-cyan);
         }
 
-        .header .subtitle {
-            font-size: 16px;
-            opacity: 0.9;
-            color: var(--neon-cyan);
-        }
-
-        .header .brand {
-            font-size: 16px;
-            margin-bottom: 10px;
-            color: var(--neon-cyan);
-        }
-
-        .btn-primary, .btn-submit, .btn {
-            background: linear-gradient(135deg, #00fff2 0%, #00d4ff 100%);
-            color: #0a0a12;
-            font-size: 16px;
-            font-weight: 700;
-            padding: 14px 30px;
-            border: none;
-            border-radius: 12px;
-            cursor: pointer;
-            width: 100%;
-            transition: all 0.3s ease;
-            box-shadow: 0 0 25px rgba(0, 255, 242, 0.5);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .btn-primary:hover, .btn-submit:hover, .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 35px rgba(0, 255, 242, 0.7);
-            background: linear-gradient(135deg, #00d4ff 0%, #00fff2 100%);
-        }
-
-        .btn {
-            width: auto;
-            min-width: 200px;
-            margin-top: 10px;
-        }
-
-.info-section {
-            background: var(--gray-100);
-            color: var(--gray-500);
-            padding: 25px 30px;
-            text-align: center;
-            color: var(--white);
-        }
-
-        .form-container {
-            padding: 30px;
-            color: var(--text-color);
-        }
-
+        /* ── Form ── */
+        .form-container { padding: 30px; color: var(--text-color); }
         .section-title {
-            font-size: 20px;
-            font-weight: 700;
-            margin-bottom: 20px;
-            color: var(--neon-cyan);
-            text-shadow: 0 0 10px rgba(0, 255, 242, 0.5);
+            font-size: 17px; font-weight: 700; margin-bottom: 18px;
+            color: var(--neon-cyan); text-shadow: 0 0 10px rgba(0,255,242,.4);
+            display: flex; align-items: center; gap: 8px;
         }
-
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin-bottom: 15px;
+        .section-title::after {
+            content: ''; flex: 1; height: 1px;
+            background: linear-gradient(to right, rgba(0,255,242,.3), transparent);
         }
-
-        .form-group {
-            margin-bottom: 15px;
-        }
-
-        .form-group.full-width {
-            grid-column: 1 / -1;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 6px;
-            font-weight: 600;
-            color: var(--neon-cyan);
-            font-size: 14px;
-        }
-
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px; }
+        .form-group { margin-bottom: 15px; }
+        .form-group.full-width { grid-column: 1 / -1; }
+        .form-group label { display: block; margin-bottom: 6px; font-weight: 600; color: var(--neon-cyan); font-size: 13px; letter-spacing: .3px; }
+        .required { color: #ff6b6b; }
         .form-group input,
         .form-group textarea {
-            width: 100%;
-            padding: 12px 16px;
-            border-radius: 10px;
-            border: 2px solid var(--gray-200);
-            background: var(--gray-100);
-            color: var(--text-color);
-            font-size: 15px;
-            transition: all 0.3s ease;
+            width: 100%; padding: 12px 16px;
+            border-radius: 10px; border: 2px solid rgba(231,34,242,.2);
+            background: var(--input-bg); color: var(--text-color);
+            font-size: 14px; font-family: inherit;
+            transition: all .25s ease;
         }
-
         .form-group input:focus,
         .form-group textarea:focus {
-            outline: none;
-            border-color: var(--neon-purple);
-            box-shadow: 0 0 15px rgba(231, 34, 242, 0.4);
+            outline: none; border-color: var(--neon-purple);
+            box-shadow: 0 0 15px rgba(231,34,242,.3);
+            background: #15152c;
         }
-
         .form-group input::placeholder,
-        .form-group textarea::placeholder {
-            color: var(--gray-500);
+        .form-group textarea::placeholder { color: var(--muted); }
+        .form-group textarea { resize: vertical; min-height: 90px; }
+
+        /* ── Radio group ── */
+        .radio-group { display: flex; gap: 10px; flex-wrap: wrap; }
+        .radio-item {
+            display: flex; align-items: center; gap: 8px; cursor: pointer;
+            padding: 10px 16px; border-radius: 8px;
+            background: var(--input-bg); border: 2px solid rgba(231,34,242,.2);
+            color: var(--text-color); font-size: 13px;
+            transition: all .25s ease; user-select: none;
+        }
+        .radio-item:hover { border-color: rgba(231,34,242,.5); }
+        .radio-item input[type="radio"] { width: auto; accent-color: var(--neon-purple); }
+        .radio-item input[type="radio"]:checked + span { color: var(--neon-cyan); font-weight: 600; }
+        .radio-item:has(input:checked) { border-color: var(--neon-purple); background: rgba(231,34,242,.1); }
+
+        /* ── Submit button ── */
+        .btn-submit {
+            background: linear-gradient(135deg, #00fff2 0%, #00d4ff 100%);
+            color: #0a0a12; font-size: 15px; font-weight: 700;
+            padding: 15px 30px; border: none; border-radius: 12px;
+            cursor: pointer; width: 100%; margin-top: 10px;
+            transition: all .3s ease;
+            box-shadow: 0 0 25px rgba(0,255,242,.4);
+            text-transform: uppercase; letter-spacing: 1.5px;
+            font-family: inherit;
+        }
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 35px rgba(0,255,242,.65);
+        }
+        .btn-submit:active { transform: translateY(0); }
+
+        /* ── Note ── */
+        .note {
+            margin-top: 14px; padding: 12px 16px;
+            background: rgba(0,255,242,.06); border-left: 3px solid var(--neon-cyan);
+            border-radius: 0 8px 8px 0; font-size: 13px; color: var(--muted);
         }
 
-        .checkbox-group {
-            display: flex;
-            gap: 15px;
+        /* ── Links bar ── */
+        .links-bar {
+            display: flex; justify-content: center; gap: 12px;
+            padding: 16px 30px;
+            background: rgba(0,0,0,.2);
+            border-top: 1px solid var(--border);
             flex-wrap: wrap;
         }
-
-        .checkbox-item {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            cursor: pointer;
-            padding: 10px 16px;
-            border-radius: 8px;
-            background: var(--gray-100);
-            border: 2px solid var(--gray-200);
-            color: var(--text-color);
-            transition: all 0.3s ease;
+        .links-bar a {
+            display: inline-flex; align-items: center; gap: 6px;
+            padding: 8px 16px; border-radius: 8px;
+            background: rgba(231,34,242,.1); border: 1px solid rgba(231,34,242,.25);
+            color: var(--neon-cyan); text-decoration: none; font-size: 13px;
+            transition: all .25s ease;
         }
+        .links-bar a:hover { background: rgba(231,34,242,.2); border-color: var(--neon-purple); }
 
-        .checkbox-item:hover {
-            border-color: var(--neon-purple);
-        }
-
-        .checkbox-item input[type="radio"] {
-            width: auto;
-            accent-color: var(--neon-purple);
-        }
-
-        .required {
-            color: #ff6b6b;
-        }
-
-        .info-bar {
-            display: flex;
-            justify-content: space-around;
-            padding: 20px 30px;
-            background: rgba(231, 34, 242, 0.1);
-            border-top: 1px solid rgba(231, 34, 242, 0.2);
-            border-bottom: 1px solid rgba(231, 34, 242, 0.2);
-        }
-
-        .info-bar .info-item {
-            text-align: center;
-        }
-
-        .info-bar .label {
-            font-size: 12px;
-            color: var(--gray-500);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .info-bar .value {
-            font-size: 16px;
-            font-weight: 700;
-            color: var(--neon-cyan);
-        }
-
-        .tech-section {
-            padding: 20px 30px;
-            background: var(--gray-100);
-            text-align: center;
-        }
-
-        .tech-section h3 {
-            font-size: 14px;
-            color: var(--gray-500);
-            letter-spacing: 2px;
-            margin-bottom: 15px;
-        }
-
-        .tech-icons {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 12px;
-        }
-
-        .tech-icons span {
-            padding: 8px 14px;
-            background: var(--gray-200);
-            border-radius: 20px;
-            font-size: 13px;
-            color: var(--neon-cyan);
-        }
-
-        .badge {
-            display: inline-block;
-            padding: 6px 14px;
-            background: rgba(0, 255, 242, 0.2);
-            border-radius: 20px;
-            font-size: 13px;
-            color: var(--neon-cyan);
-            margin-top: 10px;
-        }
-
+        /* ── Footer ── */
         .footer {
-            padding: 25px 30px;
-            text-align: center;
-            background: var(--gray-100);
-            color: var(--gray-500);
-            font-size: 14px;
+            padding: 22px 30px; text-align: center;
+            background: var(--card-bg); color: var(--muted); font-size: 13px;
         }
+        .footer p { margin-bottom: 8px; }
+        .footer a { color: var(--white); text-decoration: none; margin: 0 8px; opacity: .8; }
+        .footer a:hover { color: var(--neon-cyan); opacity: 1; }
 
-        .footer p {
-            margin-bottom: 10px;
-        }
-
-        .footer a {
-            color: var(--white);
-            text-decoration: none;
-            margin: 0 10px;
-            opacity: 0.9;
-        }
-
-        .footer a:hover {
-            text-decoration: underline;
-        }
-
-        .busco-equipo {
-            padding: 30px;
-            border-top: 2px solid rgba(231, 34, 242, 0.3);
-            margin-top: 20px;
-        }
-
-        .equipos-inscritos {
-            padding: 30px;
-            border-top: 2px solid rgba(0, 255, 242, 0.3);
-            margin-top: 20px;
-        }
-
-        .equipos-inscritos h2 {
-            font-size: 22px;
-            color: var(--neon-cyan);
-            margin-bottom: 10px;
-            text-shadow: 0 0 15px rgba(0, 255, 242, 0.5);
-        }
-
-        .equipos-inscritos > p {
-            color: var(--text-color);
-            opacity: 0.8;
-            margin-bottom: 20px;
-        }
-
-        .equipos-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 15px;
-            max-width: 100%;
-        }
-
-        .equipo-card {
-            padding: 18px;
-            background: linear-gradient(135deg, rgba(26, 26, 46, 0.9) 0%, rgba(20, 20, 35, 0.95) 100%);
-            border-radius: 16px;
-            border: 2px solid rgba(0, 255, 242, 0.3);
-            transition: all 0.3s ease;
-        }
-
-        .equipo-card:hover {
-            border-color: var(--neon-cyan);
-            box-shadow: 0 0 20px rgba(0, 255, 242, 0.3);
-            transform: translateY(-2px);
-        }
-
-        .equipo-card .nombre-equipo {
-            font-weight: 700;
-            color: var(--neon-cyan);
-            font-size: 18px;
-            margin-bottom: 8px;
-        }
-
-        .equipo-card .integrantes-list {
-            color: var(--text-color);
-            font-size: 14px;
-            margin: 8px 0;
-        }
-
-        .equipo-card .cantidad {
-            display: inline-block;
-            padding: 4px 10px;
-            background: linear-gradient(135deg, var(--neon-purple) 0%, var(--primary-light) 100%);
-            border-radius: 20px;
-            font-size: 12px;
-            color: var(--white);
-            font-weight: 600;
-        }
-
-        .equipo-card .correo {
-            font-size: 13px;
-            color: var(--neon-purple);
-            margin-top: 8px;
-        }
-
-        .equipos-inscritos .no-members {
-            grid-column: 1 / -1;
-            text-align: center;
-            padding: 30px;
-            color: var(--gray-500);
-        }
-
-        .busco-equipo h2 {
-            font-size: 22px;
-            color: var(--neon-cyan);
-            margin-bottom: 10px;
-            text-shadow: 0 0 15px rgba(0, 255, 242, 0.5);
-        }
-
-        .busco-equipo > p {
-            color: var(--text-color);
-            margin-bottom: 20px;
-            opacity: 0.8;
-        }
-
-        .busco-form {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-        }
-
-        .busco-form .form-group {
-            margin-bottom: 0;
-        }
-
-        .busco-form .form-group:first-child {
-            grid-column: 1 / -1;
-        }
-
-        .busco-form select {
-            width: 100%;
-            padding: 12px 16px;
-            border-radius: 10px;
-            border: 2px solid var(--gray-200);
-            background: var(--gray-100);
-            color: var(--text-color);
-            font-size: 15px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .busco-form select:focus {
-            outline: none;
-            border-color: var(--neon-purple);
-            box-shadow: 0 0 15px rgba(231, 34, 242, 0.4);
-        }
-
-        .busco-form .btn {
-            grid-column: 1 / -1;
-            margin-top: 10px;
-        }
-
-        .team-list {
-            margin-top: 25px;
-            padding-top: 20px;
-            border-top: 1px solid rgba(231, 34, 242, 0.2);
-            max-width: 100%;
-            overflow: hidden;
-        }
-
-        .team-list h3 {
-            font-size: 18px;
-            color: var(--neon-cyan);
-            margin-bottom: 15px;
-            text-align: center;
-        }
-
-        .team-member {
-            padding: 18px;
-            background: linear-gradient(135deg, rgba(26, 26, 46, 0.9) 0%, rgba(20, 20, 35, 0.95) 100%);
-            border-radius: 16px;
-            margin-bottom: 15px;
-            border: 2px solid rgba(0, 255, 242, 0.3);
-            max-width: 100%;
-            word-wrap: break-word;
-            overflow-wrap: break-word;
-            transition: all 0.3s ease;
-        }
-
-        .team-member:hover {
-            border-color: var(--neon-cyan);
-            box-shadow: 0 0 20px rgba(0, 255, 242, 0.3);
-            transform: translateY(-2px);
-        }
-
-        .team-member .name {
-            font-weight: 700;
-            color: var(--neon-cyan);
-            font-size: 18px;
-            display: flex;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
-
-        .team-member .tipo {
-            display: inline-block;
-            padding: 4px 12px;
-            background: linear-gradient(135deg, var(--neon-purple) 0%, var(--primary-light) 100%);
-            border-radius: 20px;
-            font-size: 11px;
-            color: var(--white);
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .team-member .rol {
-            color: var(--text-color);
-            font-size: 15px;
-            margin: 10px 0;
-            padding: 8px 0;
-            border-top: 1px solid rgba(231, 34, 242, 0.2);
-            border-bottom: 1px solid rgba(231, 34, 242, 0.2);
-        }
-
-        .team-member .skills {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 10px;
-        }
-
-        .team-member .skills span {
-            padding: 5px 12px;
-            background: rgba(0, 212, 255, 0.15);
-            border: 1px solid rgba(0, 212, 255, 0.3);
-            border-radius: 20px;
-            font-size: 12px;
-            color: var(--neon-cyan);
-        }
-
-        .team-member .correo {
-            font-size: 13px;
-            color: var(--neon-purple);
-            margin-top: 12px;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .no-members {
-            text-align: center;
-            padding: 40px 30px;
-            color: var(--gray-500);
-            font-style: italic;
-            background: rgba(26, 26, 46, 0.5);
-            border-radius: 16px;
-            border: 2px dashed rgba(231, 34, 242, 0.3);
-        }
-
-        /* Thank You Modal */
+        /* ── Modal ── */
         .modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-            animation: fadeIn 0.3s ease;
+            display: none; position: fixed; inset: 0;
+            background: rgba(0,0,0,.8); z-index: 1000;
+            justify-content: center; align-items: center;
         }
-
-        .modal-overlay.active {
-            display: flex;
-        }
-
+        .modal-overlay.active { display: flex; }
         .modal-content {
             background: linear-gradient(135deg, #1a1a2e 0%, #12121f 100%);
-            border: 2px solid var(--neon-cyan);
-            border-radius: 24px;
-            padding: 50px 40px;
-            text-align: center;
-            max-width: 400px;
-            box-shadow: 0 0 50px rgba(0, 255, 242, 0.3);
-            animation: scaleIn 0.4s ease;
+            border: 2px solid var(--neon-cyan); border-radius: 24px;
+            padding: 48px 40px; text-align: center; max-width: 420px; width: 90%;
+            box-shadow: 0 0 50px rgba(0,255,242,.25);
+            animation: scaleIn .35s ease;
         }
-
-        @keyframes scaleIn {
-            from { transform: scale(0.8); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
-        }
-
-        .modal-content h2 {
-            font-size: 32px;
-            margin-bottom: 20px;
-            color: var(--neon-cyan);
-            text-shadow: 0 0 20px var(--neon-cyan);
-        }
-
-        .modal-content p {
-            color: var(--text-color);
-            font-size: 16px;
-            margin-bottom: 30px;
-            line-height: 1.6;
-        }
-
-        .modal-buttons {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-        }
-
+        .modal-content .icon { font-size: 52px; margin-bottom: 16px; }
+        .modal-content h2 { font-size: 26px; color: var(--neon-cyan); text-shadow: 0 0 20px var(--neon-cyan); margin-bottom: 14px; }
+        .modal-content p { color: var(--text-color); font-size: 15px; margin-bottom: 10px; line-height: 1.6; }
+        .modal-content .hint { font-size: 13px; color: var(--muted); margin-bottom: 28px; }
+        .modal-buttons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
         .modal-buttons .btn {
-            min-width: 140px;
+            padding: 11px 22px; border-radius: 10px;
+            background: linear-gradient(135deg, #00fff2, #00d4ff);
+            color: #0a0a12; font-weight: 700; border: none; cursor: pointer;
+            font-size: 14px; font-family: inherit; transition: all .25s ease;
+        }
+        .modal-buttons .btn:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(0,255,242,.5); }
+        .modal-buttons .btn.secondary {
+            background: rgba(231,34,242,.15);
+            border: 1px solid var(--neon-purple); color: var(--neon-cyan);
         }
 
+        @keyframes scaleIn { from{transform:scale(.85);opacity:0} to{transform:scale(1);opacity:1} }
+        @keyframes fadeIn { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
+
+        /* ── Responsive ── */
         @media (max-width: 600px) {
             .form-row { grid-template-columns: 1fr; }
-            .container { margin: 10px; }
-            .header { padding: 30px 20px; }
-            .form-container { padding: 25px 20px; }
-            .checkbox-group { flex-direction: column; }
-            .checkbox-item { width: 100%; }
-            .info-bar { flex-direction: column; gap: 15px; }
+            .container { margin: 8px; }
+            .header { padding: 28px 20px; }
+            .form-container { padding: 24px 18px; }
+            .radio-group { flex-direction: column; }
+            .info-bar { gap: 10px; padding: 16px 18px; }
+            .modal-content { padding: 36px 24px; }
         }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .container { animation: fadeIn 0.6s ease-out; }
     </style>
 </head>
 <body>
+
+<!-- Animated background -->
 <div class="dots-bg">
-        <div class="dots-container">
-            <div class="square"><div class="dot"></div><div class="dot"></div></div>
-            <div class="square"><div class="dot"></div><div class="dot"></div></div>
-            <div class="square"><div class="dot"></div><div class="dot"></div></div>
-            <div class="square"><div class="dot"></div><div class="dot"></div></div>
-            <div class="square"><div class="dot"></div><div class="dot"></div></div>
-            <div class="square"><div class="dot"></div><div class="dot"></div></div>
-            <div class="square"><div class="dot"></div><div class="dot"></div></div>
-            <div class="square"><div class="dot"></div><div class="dot"></div></div>
-            <div class="square"><div class="dot"></div><div class="dot"></div></div>
-            <div class="square"><div class="dot"></div><div class="dot"></div></div>
-            <div class="square"><div class="dot"></div><div class="dot"></div></div>
-            <div class="square"><div class="dot"></div><div class="dot"></div></div>
-            <div class="square"><div class="dot"></div><div class="dot"></div></div>
-            <div class="square"><div class="dot"></div><div class="dot"></div></div>
-            <div class="square"><div class="dot"></div><div class="dot"></div></div>
-            <div class="square"><div class="dot"></div><div class="dot"></div></div>
-            <div class="square"><div class="dot"></div><div class="dot"></div></div>
-            <div class="square"><div class="dot"></div><div class="dot"></div></div>
-            <div class="square"><div class="dot"></div><div class="dot"></div></div>
-            <div class="square"><div class="dot"></div><div class="dot"></div></div>
-            <div class="square"><div class="dot"></div><div class="dot"></div></div>
-            <div class="square"><div class="dot"></div><div class="dot"></div></div>
-            <div class="square"><div class="dot"></div><div class="dot"></div></div>
-            <div class="square"><div class="dot"></div><div class="dot"></div></div>
-            <div class="square"><div class="dot"></div><div class="dot"></div></div>
-            <div class="square"><div class="dot"></div><div class="dot"></div></div>
-            <div class="square"><div class="dot"></div><div class="dot"></div></div>
-            <div class="square"><div class="dot"></div><div class="dot"></div></div>
-            <div class="square"><div class="dot"></div><div class="dot"></div></div>
-            <div class="square"><div class="dot"></div><div class="dot"></div></div>
-            <div class="square"><div class="dot"></div><div class="dot"></div></div>
-            <div class="square"><div class="dot"></div><div class="dot"></div></div>
-            <div class="square"><div class="dot"></div><div class="dot"></div></div>
-            <div class="square"><div class="dot"></div><div class="dot"></div></div>
-            <div class="square"><div class="dot"></div><div class="dot"></div></div>
-            <div class="square"><div class="dot"></div><div class="dot"></div></div>
-            <div class="square"><div class="dot"></div><div class="dot"></div></div>
-            <div class="square"><div class="dot"></div><div class="dot"></div></div>
-            <div class="square"><div class="dot"></div><div class="dot"></div></div>
-            <div class="square"><div class="dot"></div><div class="dot"></div></div>
-            <div class="square"><div class="dot"></div><div class="dot"></div></div>
-            <div class="square"><div class="dot"></div><div class="dot"></div></div>
-            <div class="square"><div class="dot"></div><div class="dot"></div></div>
-            <div class="square"><div class="dot"></div><div class="dot"></div></div>
-            <div class="square"><div class="dot"></div><div class="dot"></div></div>
-            <div class="square"><div class="dot"></div><div class="dot"></div></div>
-            <div class="square"><div class="dot"></div><div class="dot"></div></div>
-            <div class="square"><div class="dot"></div><div class="dot"></div></div>
-            <div class="square"><div class="dot"></div><div class="dot"></div></div>
-            <div class="square"><div class="dot"></div><div class="dot"></div></div>
-            <div class="square"><div class="dot"></div><div class="dot"></div></div>
-            <div class="square"><div class="dot"></div><div class="dot"></div></div>
-            <div class="square"><div class="dot"></div><div class="dot"></div></div>
-            <div class="square"><div class="dot"></div><div class="dot"></div></div>
-            <div class="square"><div class="dot"></div><div class="dot"></div></div>
-            <div class="square"><div class="dot"></div><div class="dot"></div></div>
-            <div class="square"><div class="dot"></div><div class="dot"></div></div>
-            <div class="square"><div class="dot"></div><div class="dot"></div></div>
-            <div class="square"><div class="dot"></div><div class="dot"></div></div>
-            <div class="square"><div class="dot"></div><div class="dot"></div></div>
-            <div class="square"><div class="dot"></div><div class="dot"></div></div>
-            <div class="square"><div class="dot"></div><div class="dot"></div></div>
-            <div class="square"><div class="dot"></div><div class="dot"></div></div>
-            <div class="square"><div class="dot"></div><div class="dot"></div></div>
-            <div class="square"><div class="dot"></div><div class="dot"></div></div>
-            <div class="square"><div class="dot"></div><div class="dot"></div></div>
-            <div class="square"><div class="dot"></div><div class="dot"></div></div>
-            <div class="square"><div class="dot"></div><div class="dot"></div></div>
-            <div class="square"><div class="dot"></div><div class="dot"></div></div>
-            <div class="square"><div class="dot"></div><div class="dot"></div></div>
-            <div class="square"><div class="dot"></div><div class="dot"></div></div>
-            <div class="square"><div class="dot"></div><div class="dot"></div></div>
-            <div class="square"><div class="dot"></div><div class="dot"></div></div>
-            <div class="square"><div class="dot"></div><div class="dot"></div></div>
-            <div class="square"><div class="dot"></div><div class="dot"></div></div>
-            <div class="square"><div class="dot"></div><div class="dot"></div></div>
-            <div class="square"><div class="dot"></div><div class="dot"></div></div>
-            <div class="square"><div class="dot"></div><div class="dot"></div></div>
-            <div class="square"><div class="dot"></div><div class="dot"></div></div>
-            <div class="square"><div class="dot"></div><div class="dot"></div></div>
-            <div class="square"><div class="dot"></div><div class="dot"></div></div>
-            <div class="square"><div class="dot"></div><div class="dot"></div></div>
-            <div class="square"><div class="dot"></div><div class="dot"></div></div>
-            <div class="square"><div class="dot"></div><div class="dot"></div></div>
-            <div class="square"><div class="dot"></div><div class="dot"></div></div>
-            <div class="square"><div class="dot"></div><div class="dot"></div></div>
-            <div class="square"><div class="dot"></div><div class="dot"></div></div>
-            <div class="square"><div class="dot"></div><div class="dot"></div></div>
-            <div class="square"><div class="dot"></div><div class="dot"></div></div>
-            <div class="square"><div class="dot"></div><div class="dot"></div></div>
-            <div class="square"><div class="dot"></div><div class="dot"></div></div>
-            <div class="square"><div class="dot"></div><div class="dot"></div></div>
-            <div class="square"><div class="dot"></div><div class="dot"></div></div>
-            <div class="square"><div class="dot"></div><div class="dot"></div></div>
-            <div class="square"><div class="dot"></div><div class="dot"></div></div>
-            <div class="square"><div class="dot"></div><div class="dot"></div></div>
-            <div class="square"><div class="dot"></div><div class="dot"></div></div>
+    <div class="dots-container">
+        <div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div>
+        <div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div>
+        <div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div>
+        <div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div>
+        <div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div>
+        <div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div>
+        <div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div>
+        <div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div>
+        <div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div>
+        <div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div>
+        <div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div>
+        <div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div><div class="square"><div class="dot"></div><div class="dot"></div></div>
+    </div>
+</div>
+
+<div class="container">
+
+    <!-- Header -->
+    <div class="header">
+        <div class="logo-wrap">
+            <img src=".github/logos/logo-hackaton.jpg" alt="Hackathon Logo" onerror="this.style.display='none'">
+        </div>
+        <div class="brand">Fundación ProMiTierra</div>
+        <h1>Hackathon IA & Automatización</h1>
+        <p class="subtitle">Edición 2026 · Florencia, Caquetá</p>
+        <span class="badge">📝 Registro de Equipos</span>
+    </div>
+
+    <!-- Info bar -->
+    <div class="info-bar">
+        <div class="info-item">
+            <div class="label">Fecha</div>
+            <div class="value">Por confirmar</div>
+        </div>
+        <div class="info-item">
+            <div class="label">Modalidad</div>
+            <div class="value">Presencial</div>
+        </div>
+        <div class="info-item">
+            <div class="label">Equipo</div>
+            <div class="value">2 – 4 personas</div>
+        </div>
+        <div class="info-item">
+            <div class="label">Costo</div>
+            <div class="value">Gratis</div>
         </div>
     </div>
-                <div class="tunnel-face tunnel-face-2">
-                    <div class="grid-stroke"><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div></div>
-                    <div class="grid-stroke"><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div></div>
-                    <div class="grid-stroke"><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div></div>
-                    <div class="grid-stroke"><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div></div>
-                    <div class="grid-stroke"><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div></div>
-                    <div class="grid-stroke"><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div></div>
-                    <div class="grid-stroke"><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div></div>
-                    <div class="grid-stroke"><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div></div>
-                    <div class="grid-stroke"><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div></div>
-                    <div class="grid-stroke"><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div></div>
-                    <div class="grid-stroke"><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div></div>
-                    <div class="grid-stroke"><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div></div>
-                    <div class="grid-stroke"><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div></div>
-                    <div class="grid-stroke"><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div></div>
-                    <div class="grid-stroke"><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div></div>
-                    <div class="grid-stroke"><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div></div>
-                    <div class="grid-stroke"><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div></div>
-                    <div class="grid-stroke"><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div></div>
-                    <div class="grid-stroke"><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div></div>
-                    <div class="grid-stroke"><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div></div>
-                </div>
-                <div class="tunnel-face tunnel-face-3">
-                    <div class="grid-stroke"><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div></div>
-                    <div class="grid-stroke"><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div></div>
-                    <div class="grid-stroke"><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div></div>
-                    <div class="grid-stroke"><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div></div>
-                    <div class="grid-stroke"><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div></div>
-                    <div class="grid-stroke"><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div></div>
-                    <div class="grid-stroke"><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div></div>
-                    <div class="grid-stroke"><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div></div>
-                    <div class="grid-stroke"><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div></div>
-                    <div class="grid-stroke"><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div></div>
-                    <div class="grid-stroke"><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div></div>
-                    <div class="grid-stroke"><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div></div>
-                    <div class="grid-stroke"><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div></div>
-                    <div class="grid-stroke"><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div></div>
-                    <div class="grid-stroke"><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div></div>
-                    <div class="grid-stroke"><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div></div>
-                    <div class="grid-stroke"><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div></div>
-                    <div class="grid-stroke"><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div></div>
-                    <div class="grid-stroke"><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div></div>
-                    <div class="grid-stroke"><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div></div>
-                </div>
-                <div class="tunnel-face tunnel-face-4">
-                    <div class="grid-stroke"><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div></div>
-                    <div class="grid-stroke"><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div></div>
-                    <div class="grid-stroke"><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div></div>
-                    <div class="grid-stroke"><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div></div>
-                    <div class="grid-stroke"><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div></div>
-                    <div class="grid-stroke"><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div></div>
-                    <div class="grid-stroke"><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div></div>
-                    <div class="grid-stroke"><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div></div>
-                    <div class="grid-stroke"><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div></div>
-                    <div class="grid-stroke"><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div></div>
-                    <div class="grid-stroke"><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div></div>
-                    <div class="grid-stroke"><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div></div>
-                    <div class="grid-stroke"><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div></div>
-                    <div class="grid-stroke"><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div></div>
-                    <div class="grid-stroke"><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div></div>
-                    <div class="grid-stroke"><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div></div>
-                    <div class="grid-stroke"><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div></div>
-                    <div class="grid-stroke"><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div></div>
-                    <div class="grid-stroke"><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div></div>
-                    <div class="grid-stroke"><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div><div class="grid-square"></div></div>
-                </div>
-                <div class="tunnel-face tunnel-end"></div>
-                <div class="highlight"></div>
-            </div>
+
+    <!-- Tech strip -->
+    <div class="tech-section">
+        <h3>Tecnologías del evento</h3>
+        <div class="tech-icons">
+            <span>🤖 n8n</span>
+            <span>🐍 Python</span>
+            <span>💻 Node.js</span>
+            <span>🧠 OpenAI</span>
+            <span>🐳 Docker</span>
+            <span>🦙 Ollama</span>
+            <span>📦 GitHub</span>
+            <span>⚡ React</span>
         </div>
     </div>
-    <div class="container">
-        <div class="header">
-            <div class="brand">🏛️ Fundación ProMiTierra</div>
-            <h1>Hackathon IA & Automatización</h1>
-            <p class="subtitle">Edición 2026</p>
-            <span class="badge">📝 Inscripción</span>
+
+    <!-- Registration form -->
+    <form class="form-container" id="registroForm" novalidate>
+        <div class="section-title">📋 Datos del Equipo</div>
+
+        <div class="form-group">
+            <label for="equipo">Nombre del Equipo <span class="required">*</span></label>
+            <input type="text" id="equipo" name="equipo"
+                   placeholder="Ej: Los Innovadores del Caquetá" required
+                   autocomplete="off">
         </div>
 
-        <div class="info-bar">
-            <div class="info-item">
-                <div class="label">Fecha</div>
-                <div class="value">Por definir</div>
-            </div>
-            <div class="info-item">
-                <div class="label">Modalidad</div>
-                <div class="value">Presencial</div>
-            </div>
-            <div class="info-item">
-                <div class="label">Equipo</div>
-                <div class="value">2-4 personas</div>
-            </div>
-            <div class="info-item">
-                <div class="label">Costo</div>
-                <div class="value">Gratis</div>
-            </div>
+        <div class="form-group">
+            <label for="integrantes">Integrantes <span class="required">*</span> — uno por línea</label>
+            <textarea id="integrantes" name="integrantes" rows="4"
+                      placeholder="Juan Pérez&#10;María López&#10;Carlos García" required></textarea>
         </div>
 
-        <div class="tech-section">
-            <h3>TECNOLOGÍAS DEL EVENTO</h3>
-            <div class="tech-icons">
-                <span>🤖 n8n</span>
-                <span>🐍 Python</span>
-                <span>💻 Node.js</span>
-                <span>🧠 OpenAI</span>
-                <span>🐳 Docker</span>
-                <span>🦙 Ollama</span>
-                <span>📦 GitHub</span>
-            </div>
-        </div>
-
-        <form class="form-container" id="registroForm">
-            <div class="section-title">📋 Datos del Equipo</div>
-            
-            <div class="form-row">
-                <div class="form-group full-width">
-                    <label for="equipo">Nombre del Equipo <span class="required">*</span></label>
-                    <input type="text" id="equipo" name="equipo" placeholder="Ej: Los Innovadores del Caquetá" required>
-                </div>
-            </div>
-
-            <div class="form-group full-width">
-                <label for="integrantes">Integrantes del Equipo <span class="required">*</span> (uno por línea)</label>
-                <textarea id="integrantes" name="integrantes" rows="4" placeholder="Juan Pérez&#10;María López&#10;Carlos García" required></textarea>
-            </div>
-
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="correo">Correo de contacto <span class="required">*</span></label>
-                    <input type="email" id="correo" name="correo" placeholder="tu@email.com" required>
-                </div>
-                <div class="form-group">
-                    <label for="institucion">Institución <span class="required">*</span></label>
-                    <input type="text" id="institucion" name="institucion" placeholder="Universidad Nacional" required>
-                </div>
-            </div>
-
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="edades">Edades</label>
-                    <input type="text" id="edades" name="edades" placeholder="15, 16, 17">
-                </div>
-                <div class="form-group">
-                    <label for="skills">Skills</label>
-                    <input type="text" id="skills" name="skills" placeholder="Python, JavaScript...">
-                </div>
-            </div>
-
-            <div class="section-title" style="margin-top:30px;">📊 Categoría</div>
-
+        <div class="form-row">
             <div class="form-group">
-                <label>Nivel <span class="required">*</span></label>
-                <div class="checkbox-group">
-                    <label class="checkbox-item">
-                        <input type="radio" name="categoria" value="Principiante">
-                        <span>🌱 Principiante</span>
-                    </label>
-                    <label class="checkbox-item">
-                        <input type="radio" name="categoria" value="Intermedio">
-                        <span>🌿 Intermedio</span>
-                    </label>
-                    <label class="checkbox-item">
-                        <input type="radio" name="categoria" value="Avanzado">
-                        <span>🌳 Avanzado</span>
-                    </label>
-                </div>
+                <label for="correo">Correo de contacto <span class="required">*</span></label>
+                <input type="email" id="correo" name="correo"
+                       placeholder="tu@email.com" required>
             </div>
-
             <div class="form-group">
-                <label>Experiencia programando</label>
-                <div class="checkbox-group">
-                    <label class="checkbox-item">
-                        <input type="radio" name="experiencia" value="Ninguna">
-                        <span>❌ Ninguna</span>
-                    </label>
-                    <label class="checkbox-item">
-                        <input type="radio" name="experiencia" value="Básica">
-                        <span>🔰 Básica</span>
-                    </label>
-                    <label class="checkbox-item">
-                        <input type="radio" name="experiencia" value="Intermedia">
-                        <span>💻 Intermedia</span>
-                    </label>
-                </div>
-            </div>
-
-            <button type="submit" class="btn-submit">🚀 Inscribirse al Hackathon</button>
-
-            <div class="note">
-                ℹ️ Al enviar, serás redirigido a GitHub para crear la issue.
-            </div>
-        </form>
-
-        <!-- Busco Equipo Section -->
-        <div class="busco-equipo" id="busco-equipo">
-            <h2>👥 ¿Buscas Equipo?</h2>
-            <p>Si necesitas integrar personas a tu equipo o quieres unirte a uno, ¡publica aquí!</p>
-            
-            <div class="busco-form">
-                <div class="form-group">
-                    <label>Tu nombre <span class="required">*</span></label>
-                    <input type="text" id="busco-nombre" placeholder="Juan Pérez" required>
-                </div>
-                
-                <div class="form-group">
-                    <label>Qué buscas? <span class="required">*</span></label>
-                    <select id="busco-tipo">
-                        <option value="equipo">Tengo equipo, necesito integrante</option>
-                        <option value="integrante">No tengo equipo, quiero unirme</option>
-                    </select>
-                </div>
-                
-                <div class="form-group">
-                    <label>Tu rol / Qué haces? <span class="required">*</span></label>
-                    <input type="text" id="busco-rol" placeholder="Desarrollador, Diseño, Ideas, Gestion" required>
-                </div>
-                
-                <div class="form-group">
-                    <label>Skills / Conocimientos</label>
-                    <input type="text" id="busco-skills" placeholder="Python, Diseño, Liderazgo">
-                </div>
-                
-                <div class="form-group">
-                    <label>Correo <span class="required">*</span></label>
-                    <input type="email" id="busco-correo" placeholder="tu@email.com" required>
-                </div>
-                
-                <div class="form-group">
-                    <label>Descripción breve</label>
-                    <textarea id="busco-descripcion" rows="2" placeholder="Busco equipo para proyecto de IA sobre educación..."></textarea>
-                </div>
-                
-                <button type="button" class="btn" onclick="publicarBuscoEquipo()">📢 Publicar en GitHub</button>
-            </div>
-
-            <div class="team-list">
-                <h3>👨‍💻 Personas buscando equipo</h3>
-                <div id="lista-integrantes">
-                    <div class="no-members">
-                       Aún no hay publicaciones. ¡Sé el primero!
-                    </div>
-                </div>
+                <label for="institucion">Institución <span class="required">*</span></label>
+                <input type="text" id="institucion" name="institucion"
+                       placeholder="Universidad / Colegio" required>
             </div>
         </div>
 
-        <div class="footer">
-            <p><strong>🏛️ Fundación ProMiTierra</strong> - Innovación con Sentido Humano</p>
-            <div>
-                <a href="tel:+573116124993">📱 +57 311 612 4993</a>
-                <a href="https://wa.me/message/SBDTEPUTLDLNP1">💬 WhatsApp</a>
-                <a href="https://www.promitierra.org">🌐 promitierra.org</a>
+        <div class="form-row">
+            <div class="form-group">
+                <label for="edades">Edades del equipo</label>
+                <input type="text" id="edades" name="edades"
+                       placeholder="15, 16, 17">
             </div>
+            <div class="form-group">
+                <label for="skills">Skills / Tecnologías</label>
+                <input type="text" id="skills" name="skills"
+                       placeholder="Python, JavaScript, n8n…">
+            </div>
+        </div>
+
+        <div class="section-title" style="margin-top:24px;">🏆 Categoría</div>
+
+        <div class="form-group">
+            <label>Nivel del equipo <span class="required">*</span></label>
+            <div class="radio-group">
+                <label class="radio-item">
+                    <input type="radio" name="categoria" value="Principiante" required>
+                    <span>🌱 Principiante</span>
+                </label>
+                <label class="radio-item">
+                    <input type="radio" name="categoria" value="Intermedio">
+                    <span>🌿 Intermedio</span>
+                </label>
+                <label class="radio-item">
+                    <input type="radio" name="categoria" value="Avanzado">
+                    <span>🌳 Avanzado</span>
+                </label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Experiencia programando</label>
+            <div class="radio-group">
+                <label class="radio-item">
+                    <input type="radio" name="experiencia" value="Ninguna">
+                    <span>❌ Ninguna</span>
+                </label>
+                <label class="radio-item">
+                    <input type="radio" name="experiencia" value="Básica">
+                    <span>🔰 Básica</span>
+                </label>
+                <label class="radio-item">
+                    <input type="radio" name="experiencia" value="Intermedia">
+                    <span>💻 Intermedia</span>
+                </label>
+            </div>
+        </div>
+
+        <button type="submit" class="btn-submit">🚀 Inscribirse al Hackathon</button>
+
+        <p class="note">
+            ℹ️ Al enviar serás redirigido a GitHub para confirmar y enviar el formulario de inscripción (requiere cuenta GitHub).
+        </p>
+    </form>
+
+    <!-- Quick links -->
+    <div class="links-bar">
+        <a href="https://github.com/Juan-Guillermo-Ferrer1/HACKATON-FUNDACION-PROMITIERRA/blob/main/Participantes/README.md" target="_blank">
+            👥 Ver participantes registrados
+        </a>
+        <a href="https://github.com/Juan-Guillermo-Ferrer1/HACKATON-FUNDACION-PROMITIERRA" target="_blank">
+            📂 Ver repositorio
+        </a>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p><strong>🏛️ Fundación ProMiTierra</strong> — Innovación con Sentido Humano</p>
+        <p>
+            <a href="tel:+573116124993">📱 +57 311 612 4993</a>
+            <a href="https://wa.me/message/SBDTEPUTLDLNP1" target="_blank">💬 WhatsApp</a>
+            <a href="https://www.promitierra.org" target="_blank">🌐 promitierra.org</a>
+        </p>
+    </div>
+</div>
+
+<!-- Thank You Modal -->
+<div class="modal-overlay" id="thankYouModal">
+    <div class="modal-content">
+        <div class="icon">🎉</div>
+        <h2>¡Inscripción enviada!</h2>
+        <p>Se abrió GitHub con los datos prellenados. Revisa el formulario y haz clic en <strong>"Submit new issue"</strong> para confirmar tu registro.</p>
+        <p class="hint">Necesitas una cuenta de GitHub para completar la inscripción.</p>
+        <div class="modal-buttons">
+            <button type="button" class="btn" onclick="closeThankYouModal()">✅ Entendido</button>
+            <button type="button" class="btn secondary" onclick="goToMain()">🔄 Inscribir otro equipo</button>
         </div>
     </div>
+</div>
 
 <script>
-        // Abrir GitHub Issue con datos prellenados
-        document.getElementById('registroForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            var equipo = document.getElementById('equipo').value;
-            var integrantes = document.getElementById('integrantes').value;
-            var correo = document.getElementById('correo').value;
-            var institucion = document.getElementById('institucion').value;
-            var edades = document.getElementById('edades').value;
-            var skills = document.getElementById('skills').value;
-            var categoria = '';
-            var catInput = document.querySelector('input[name="categoria"]:checked');
-            if (catInput) categoria = catInput.value;
-            var experiencia = '';
-            var expInput = document.querySelector('input[name="experiencia"]:checked');
-            if (expInput) experiencia = expInput.value;
+    var REPO = 'Juan-Guillermo-Ferrer1/HACKATON-FUNDACION-PROMITIERRA';
 
-var body = '## Nombre del Equipo\n' + equipo + '\n\n## Integrantes\n' + integrantes + '\n\n## Correo\n' + correo + '\n\n## Institución\n' + institucion + '\n\n## Edades\n' + edades + '\n\n## Skills\n' + skills + '\n\n## Categoría\n' + categoria + '\n\n## Experiencia\n' + experiencia + '\n\n---\n*Inscripción desde página web*';
+    document.getElementById('registroForm').addEventListener('submit', function(e) {
+        e.preventDefault();
 
-            // Abrir nueva issue en GitHub
-            var title = '[INSCRIPCIÓN] - ' + equipo;
-            var url = 'https://github.com/Juan-Guillermo-Ferrer1/HACKATON-FUNDACION-PROMITIERRA/issues/new?title=' + encodeURIComponent(title) + '&body=' + encodeURIComponent(body);
-            
-            console.log('Abriendo GitHub:', url);
-            window.open(url, '_blank');
-            
-            // Mostrar modal
-            showThankYouModal();
-            
-            e.target.reset();
-        });
+        var equipo       = document.getElementById('equipo').value.trim();
+        var integrantes  = document.getElementById('integrantes').value.trim();
+        var correo       = document.getElementById('correo').value.trim();
+        var institucion  = document.getElementById('institucion').value.trim();
+        var edades       = document.getElementById('edades').value.trim();
+        var skills       = document.getElementById('skills').value.trim();
 
-        // Busco Equipo functionality
-        var integrantesData = [];
+        var catInput = document.querySelector('input[name="categoria"]:checked');
+        var categoria = catInput ? catInput.value : 'No especificada';
 
-function publicarBuscoEquipo() {
-            var nombre = document.getElementById('busco-nombre').value;
-            var tipo = document.getElementById('busco-tipo').value;
-            var rol = document.getElementById('busco-rol').value;
-            var skills = document.getElementById('busco-skills').value;
-            var correo = document.getElementById('busco-correo').value;
-            var descripcion = document.getElementById('busco-descripcion').value;
+        var expInput = document.querySelector('input[name="experiencia"]:checked');
+        var experiencia = expInput ? expInput.value : 'No especificada';
 
-            if (!nombre || !rol || !correo) {
-                alert('Por favor completa los campos obligatorios');
-                return;
-            }
-
-            var nuevo = { nombre: nombre, tipo: tipo, rol: rol, skills: skills, correo: correo, descripcion: descripcion };
-            integrantesData.push(nuevo);
-            
-            // Abrir nueva issue en GitHubBusco Equipo
-            var title = '[BUSCO-EQUIPO] ' + nombre + ' - ' + rol;
-            var body = '## Nombre\n' + nombre + '\n\n## Tipo\n' + (tipo === 'equipo' ? 'Tengo equipo, necesito integrante' : 'No tengo equipo, quiero unirme') + '\n\n## Rol\n' + rol + '\n\n## Skills\n' + skills + '\n\n## Correo\n' + correo + '\n\n## Descripción\n' + descripcion + '\n\n---\n*Publicado desde página web*';
-            var url = 'https://github.com/Juan-Guillermo-Ferrer1/HACKATON-FUNDACION-PROMITIERRA/issues/new?title=' + encodeURIComponent(title) + '&body=' + encodeURIComponent(body);
-            
-            console.log('Abriendo GitHub:', url);
-            window.open(url, '_blank');
-            
-            // Mostrar modal
-            showThankYouModal();
-            
-            // Limpiar formulario
-            document.getElementById('busco-nombre').value = '';
-            document.getElementById('busco-rol').value = '';
-            document.getElementById('busco-skills').value = '';
-            document.getElementById('busco-correo').value = '';
-            document.getElementById('busco-descripcion').value = '';
-
-            // Actualizar lista
-            actualizarLista();
+        // Validate required
+        if (!equipo || !integrantes || !correo || !institucion || !catInput) {
+            alert('Por favor completa los campos obligatorios marcados con *');
+            return;
         }
 
-        function actualizarLista() {
-            var lista = document.getElementById('lista-integrantes');
-            
-            if (!lista) return;
-            
-            if (integrantesData.length === 0) {
-                lista.innerHTML = '<div class="no-members">Aún no hay publicaciones. ¡Sé el primero!</div>';
-                return;
-            }
+        // Build issue body — fields match the Python workflow parser
+        var body = [
+            '## Nombre del Equipo',
+            equipo,
+            '',
+            '## Integrantes',
+            integrantes,
+            '',
+            '## Correo',
+            correo,
+            '',
+            '## Institución',
+            institucion,
+            '',
+            '## Edades',
+            edades || 'No especificadas',
+            '',
+            '## Skills',
+            skills || 'No especificados',
+            '',
+            '## Categoría',
+            categoria,
+            '',
+            '## Experiencia',
+            experiencia
+        ].join('\n');
 
-            lista.innerHTML = '';
-            for (var i = 0; i < integrantesData.length; i++) {
-                var p = integrantesData[i];
-                var div = document.createElement('div');
-                div.className = 'team-member';
-                div.innerHTML = '<div class="name">' + p.nombre + ' <span class="tipo">' + (p.tipo === 'equipo' ? '🔽 Busca miembro' : '🔼 Tiene equipo') + '</span></div>' +
-                    '<div class="rol">' + p.rol + '</div>';
-                lista.appendChild(div);
-            }
-}
-            
-            e.target.reset();
-        });
+        var title = '[INSCRIPCIÓN] - ' + equipo;
+        var url = 'https://github.com/' + REPO + '/issues/new'
+            + '?title=' + encodeURIComponent(title)
+            + '&body='  + encodeURIComponent(body)
+            + '&labels=inscripcion';
 
-        // Busco Equipo functionality
-        var integrantesData = [];
+        window.open(url, '_blank');
+        showThankYouModal();
+    });
 
-        function actualizarLista() {
-            var lista = document.getElementById('lista-integrantes');
-            
-            if (!lista) return;
-            
-            if (integrantesData.length === 0) {
-                lista.innerHTML = '<div class="no-members">Aún no hay publicaciones. ¡Sé el primero!</div>';
-                return;
-            }
+    function showThankYouModal() {
+        document.getElementById('thankYouModal').classList.add('active');
+    }
 
-            lista.innerHTML = '';
-            for (var i = 0; i < integrantesData.length; i++) {
-                var p = integrantesData[i];
-                var div = document.createElement('div');
-                div.className = 'team-member';
-                div.innerHTML = '<div class="name">' + p.nombre + ' <span class="tipo">' + (p.tipo === 'equipo' ? '🔽 Busca miembro' : '🔼 Tiene equipo') + '</span></div>' +
-                    '<div class="rol">' + p.rol + '</div>';
-                lista.appendChild(div);
-            }
-        }
+    function closeThankYouModal() {
+        document.getElementById('thankYouModal').classList.remove('active');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
 
-        // Thank You Modal functions
-        function showThankYouModal() {
-            document.getElementById('thankYouModal').classList.add('active');
-        }
-
-        function closeThankYouModal() {
-            document.getElementById('thankYouModal').classList.remove('active');
-            // Scroll to top
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        function goToMain() {
-            closeThankYouModal();
-            document.getElementById('registroForm').reset();
-        }
-        
-        // Iniciar
-    </script>
-
-    <!-- Thank You Modal -->
-    <div class="modal-overlay" id="thankYouModal">
-        <div class="modal-content">
-            <h2>🎉 ¡GRACIAS!</h2>
-            <p>Tu inscripción ha sido enviada exitosamente. Se abrirá GitHub para que confirmes y envíes el issue.</p>
-            <p style="font-size: 14px; opacity: 0.7;">Recibirás un correo de confirmación una vez procesada tu inscripción.</p>
-            <div class="modal-buttons">
-                <button type="button" class="btn" onclick="goToMain()">🏠 Principal</button>
-                <button type="button" class="btn" onclick="closeThankYouModal()">✅ Cerrar</button>
-            </div>
-        </div>
-    </div>
+    function goToMain() {
+        closeThankYouModal();
+        document.getElementById('registroForm').reset();
+    }
+</script>
 </body>
 </html>
