@@ -1225,13 +1225,23 @@
 // Cargar equipos desde Supabase
         async function cargarEquipos() {
             const lista = document.getElementById('lista-equipos');
+            if (!lista) return;
+            
+            lista.innerHTML = '<div class="no-members">Cargando...</div>';
+            
             try {
                 console.log('Cargando de Supabase...');
                 const { data: equipos, error } = await supabase.from('participantes').select('*').order('created_at', { ascending: false });
                 
                 if (error) {
                     console.error('Error Supabase:', error);
-                    lista.innerHTML = '<div class="no-members">Error al cargar. Intenta más tarde.</div>';
+                    lista.innerHTML = '<div class="no-members">Error: ' + error.message + '</div>';
+                    return;
+                }
+                
+                if (!equipos) {
+                    console.log('No hay datos');
+                    lista.innerHTML = '<div class="no-members">Aún no hay equipos inscritos. ¡Sé el primero!</div>';
                     return;
                 }
                 
@@ -1256,7 +1266,8 @@
             }
         }
 
-        cargarEquipos();
+// Auto-refresh equipos cada 30 segundos
+        setInterval(cargarEquipos, 30000);
 
         // Abrir GitHub Issue con datos prellenados
 document.getElementById('registroForm').addEventListener('submit', async function(e) {
@@ -1319,14 +1330,23 @@ ${experiencia}
             }
 
             // Abrir nueva issue en GitHub
-            const title = encodeURIComponent(`[INSCRIPCIÓN] - ${equipo}`);
-            const bodyEncoded = encodeURIComponent(body);
-            const url = `https://github.com/Juan-Guillermo-Ferrer1/HACKATON-FUNDACION-PROMITIERRA/issues/new?title=${title}&body=${bodyEncoded}`;
+            const title = `[INSCRIPCIÓN] - ${equipo}`;
+            const url = `https://github.com/Juan-Guillermo-Ferrer1/HACKATON-FUNDACION-PROMITIERRA/issues/new?title=${encodeURIComponent(title)}&body=${encodeURIComponent(body)}`;
             
+            console.log('Abriendo GitHub:', url);
             window.open(url, '_blank');
             
+            // Recargar equipos después de un delay
+            setTimeout(() => cargarEquipos(), 2000);
+            
+            // Mostrar modal pero también recargar datos
             showThankYouModal();
-            cargarEquipos();
+            
+            // Recargar después de un delay
+            setTimeout(() => {
+                cargarEquipos();
+            }, 3000);
+            
             e.target.reset();
         });
 
