@@ -1216,13 +1216,24 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-        <script>
+    <script>
+    (function() {
         // Config Supabase
-        const SUPABASE_URL = 'https://jpgemhbkmyngxymysqjn.supabase.co';
-        const SUPABASE_KEY = 'sb_publishable_iemLVDaLB8_wR4Ah84TKuw_mgauSUWQ';
-        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+        var SUPABASE_URL = 'https://jpgemhbkmyngxymysqjn.supabase.co';
+        var SUPABASE_KEY = 'sb_publishable_iemLVDaLB8_wR4Ah84TKuw_mgauSUWQ';
+        var supabaseClient = null;
 
-// Cargar equipos desde Supabase
+        // Esperar a que cargue el SDK
+        function initSupabase() {
+            if (window.supabase && !supabaseClient) {
+                supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+                console.log('Supabase inicializado');
+                cargarEquipos();
+            }
+        }
+
+        // Cargar equipos desde Supabase
+        var cargarEquipos = async function() {
         async function cargarEquipos() {
             const lista = document.getElementById('lista-equipos');
             if (!lista) return;
@@ -1231,7 +1242,11 @@
             
             try {
                 console.log('Cargando de Supabase...');
-                const { data: equipos, error } = await supabase.from('participantes').select('*').order('created_at', { ascending: false });
+                if (!supabaseClient) {
+                    console.log('Esperando Supabase...');
+                    return;
+                }
+                const { data: equipos, error } = await supabaseClient.from('participantes').select('*').order('created_at', { ascending: false });
                 
                 if (error) {
                     console.error('Error Supabase:', error);
@@ -1267,7 +1282,18 @@
         }
 
 // Auto-refresh equipos cada 30 segundos
-        setInterval(cargarEquipos, 30000);
+        if (supabaseClient) {
+            setInterval(cargarEquipos, 30000);
+        }
+
+        // Inicializar cuando cargue el SDK
+        if (window.supabase) {
+            initSupabase();
+        } else {
+            // Retry después de un delay
+            setTimeout(initSupabase, 1000);
+        }
+        })();
 
         // Abrir GitHub Issue con datos prellenados
 document.getElementById('registroForm').addEventListener('submit', async function(e) {
@@ -1311,7 +1337,7 @@ ${experiencia}
 
             // Guardar en Supabase
             const integranteList = integrantes.split('\n').filter(i => i.trim());
-            const { data, error } = await supabase.from('participantes').insert([{
+            const { data, error } = await supabaseClient.from('participantes').insert([{
                 equipo: equipo,
                 integrantes: integranteList,
                 correo: correo,
@@ -1393,7 +1419,7 @@ ${descripcion}
 *Publicado desde página web*`;
             
             // Guardar en Supabase
-            const { data: data2, error: error2 } = await supabase.from('busco_equipo').insert([{
+            const { data: data2, error: error2 } = await supabaseClient.from('busco_equipo').insert([{
                 nombre: nombre,
                 tipo: tipo === 'equipo' ? 'Tengo equipo, necesito integrantes' : 'Busco equipo',
                 rol: rol,
@@ -1454,6 +1480,11 @@ ${descripcion}
         function goToMain() {
             closeThankYouModal();
             document.getElementById('registroForm').reset();
+        }
+        
+        // Iniciar al cargar
+        if (window.supabase) {
+            initSupabase();
         }
     </script>
 
