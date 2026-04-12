@@ -1140,18 +1140,9 @@
             <button type="submit" class="btn-submit">🚀 Inscribirse al Hackathon</button>
 
             <div class="note">
-                ℹ️ Al enviar, se creará un issue en GitHub con tus datos.
+                ℹ️ Al enviar, serás redirigido a GitHub para crear la issue.
             </div>
         </form>
-
-        <!-- Equipos Inscritos -->
-        <div class="equipos-inscritos" id="equipos-inscritos">
-            <h2>🏆 Equipos Inscritos</h2>
-            <p>Equipos que ya confirmaron su participación</p>
-            <div id="lista-equipos" class="equipos-grid">
-                <div class="no-members">Cargando equipos...</div>
-            </div>
-        </div>
 
         <!-- Busco Equipo Section -->
         <div class="busco-equipo" id="busco-equipo">
@@ -1216,43 +1207,6 @@
     </div>
 
 <script>
-        // Cargar equipos desde archivo JSON
-        function cargarEquipos() {
-            var lista = document.getElementById('lista-equipos');
-            if (!lista) return;
-            
-            lista.innerHTML = '<div class="no-members">Cargando...</div>';
-            
-            // Fetch desde GitHub RAW
-            fetch('https://raw.githubusercontent.com/Juan-Guillermo-Ferrer1/HACKATON-FUNDACION-PROMITIERRA/main/Participantes/participantes.json')
-                .then(function(response) { return response.json(); })
-                .then(function(equipos) {
-                    if (!equipos || equipos.length === 0) {
-                        lista.innerHTML = '<div class="no-members">Aún no hay equipos inscritos. ¡Sé el primero!</div>';
-                        return;
-                    }
-                    
-                    lista.innerHTML = '';
-                    for (var i = 0; i < equipos.length; i++) {
-                        var e = equipos[i];
-                        var div = document.createElement('div');
-                        div.className = 'equipo-card';
-                        var cant = e.integrantes ? (Array.isArray(e.integrantes) ? e.integrantes.length : 0) : 0;
-                        div.innerHTML = '<div class="nombre-equipo">' + e.equipo + '</div>' +
-                            '<div class="cantidad">👥 ' + cant + ' miembros</div>' +
-                            (e.correo ? '<div class="correo">📧 ' + e.correo + '</div>' : '');
-                        lista.appendChild(div);
-                    }
-                })
-                .catch(function(err) {
-                    console.error('Error:', err);
-                    lista.innerHTML = '<div class="no-members">Error al cargar</div>';
-                });
-        }
-
-        // Auto-refresh cada 30 segundos
-        setInterval(cargarEquipos, 30000);
-
         // Abrir GitHub Issue con datos prellenados
         document.getElementById('registroForm').addEventListener('submit', function(e) {
             e.preventDefault();
