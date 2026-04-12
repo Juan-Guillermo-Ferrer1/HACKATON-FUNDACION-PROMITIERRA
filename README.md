@@ -32,7 +32,7 @@ Este Hackathon va más allá de ganar un premio. Es una oportunidad para:
 - **Crear** soluciones reales a problemas de tu comunidad
 - **Conectar** con otros jóvenes innovadores del Caquetá
 - **Desarrollar** un proyecto para tu portafolio profesional
-- ** Ganar** experiencia laboral реальную para tu futuro
+- **Ganar** experiencia laboral real para tu futuro
 
 ---
 
