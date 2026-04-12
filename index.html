@@ -575,9 +575,55 @@
     </div>
 
     <script>
+        // Abrir GitHub Issue con datos prellenados
         document.getElementById('registroForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            alert('¡Inscripción enviada!');
+            
+            const equipo = document.getElementById('equipo').value;
+            const integrantes = document.getElementById('integrantes').value;
+            const correo = document.getElementById('correo').value;
+            const institucion = document.getElementById('institucion').value;
+            const edades = document.getElementById('edades').value;
+            const skills = document.getElementById('skills').value;
+            const categoria = document.querySelector('input[name="categoria"]:checked')?.value || '';
+            const experiencia = document.querySelector('input[name="experiencia"]:checked')?.value || '';
+
+            const body = `## Nombre del Equipo
+${equipo}
+
+## Integrantes
+${integrantes}
+
+## Correo
+${correo}
+
+## Institución
+${institucion}
+
+## Edades
+${edades}
+
+## Skills
+${skills}
+
+## Categoría
+${categoria}
+
+## Experiencia
+${experiencia}
+
+---
+*Inscripción desde página web*`;
+
+            // Abrir nueva issue en GitHub
+            const title = encodeURIComponent(`[INSCRIPCIÓN] - ${equipo}`);
+            const bodyEncoded = encodeURIComponent(body);
+            const url = `https://github.com/Juan-Guillermo-Ferrer1/HACKATON-FUNDACION-PROMITIERRA/issues/new?title=${title}&body=${bodyEncoded}`;
+            
+            window.open(url, '_blank');
+            
+            alert('✅ ¡Se abrirá GitHub en una nueva pestaña!\n\n1. Confirma los datos\n2. Envía la issue\n3. ¡Listo!');
+            e.target.reset();
         });
 
         // Busco Equipo functionality
