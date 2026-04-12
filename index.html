@@ -1260,14 +1260,17 @@
                     return;
                 }
                 
-                lista.innerHTML = equipos.map(function(e) {
-                    return '<div class="equipo-card">' +
-                        '<div class="nombre-equipo">' + e.equipo + '</div>' +
+                lista.innerHTML = '';
+                for (var i = 0; i < equipos.length; i++) {
+                    var e = equipos[i];
+                    var div = document.createElement('div');
+                    div.className = 'equipo-card';
+                    div.innerHTML = '<div class="nombre-equipo">' + e.equipo + '</div>' +
                         '<div class="cantidad">👥 ' + (e.integrantes ? e.integrantes.length : 0) + ' miembros</div>' +
                         (e.integrantes && e.integrantes.length > 0 ? '<div class="integrantes-list">' + e.integrantes.join(', ') + '</div>' : '') +
-                        (e.correo ? '<div class="correo">📧 ' + e.correo + '</div>' : '') +
-                        '</div>';
-                }).join('');
+                        (e.correo ? '<div class="correo">📧 ' + e.correo + '</div>' : '');
+                    lista.appendChild(div);
+                }
             } catch (error) {
                 console.error('Error:', error);
                 lista.innerHTML = '<div class="no-members">Error al cargar equipos</div>';
