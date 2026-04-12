@@ -16,8 +16,6 @@
             --gray-500: #6c757d;
             --gray-700: #495057;
             --gray-900: #212529;
-            --success: #28a745;
-            --error: #dc3545;
         }
 
         * {
@@ -27,26 +25,11 @@
         }
 
         body {
-            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, 'Helvetica Neue', Arial, sans-serif;
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
             background: linear-gradient(135deg, #0d2818 0%, #1a472a 30%, #2d5a3f 100%);
             min-height: 100vh;
             padding: 20px;
             line-height: 1.6;
-        }
-
-        /* Background decoration */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: url('.logos/ProMiTierra Logo transparente.png');
-            background-repeat: repeat;
-            opacity: 0.03;
-            pointer-events: none;
-            z-index: 0;
         }
 
         .container {
@@ -56,24 +39,13 @@
             border-radius: 24px;
             overflow: hidden;
             box-shadow: 0 25px 80px rgba(0,0,0,0.4);
-            position: relative;
-            z-index: 1;
         }
 
-        /* Header with Logo */
         .header {
             background: var(--primary);
             color: var(--white);
             padding: 40px 30px;
             text-align: center;
-            position: relative;
-        }
-
-        .header-logo {
-            width: 180px;
-            height: auto;
-            margin-bottom: 15px;
-            filter: brightness(0) invert(1);
         }
 
         .header h1 {
@@ -83,9 +55,16 @@
         }
 
         .header .subtitle {
-            font-size: 16px;
+            font-size: 18px;
             opacity: 0.9;
             margin-bottom: 15px;
+        }
+
+        .header .brand {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: var(--accent);
         }
 
         .badge {
@@ -97,10 +76,8 @@
             font-size: 14px;
             font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 1px;
         }
 
-        /* Info Bar */
         .info-bar {
             background: var(--gray-100);
             padding: 15px 30px;
@@ -115,17 +92,10 @@
             padding: 5px 15px;
         }
 
-        .info-item .icon {
-            font-size: 24px;
-            display: block;
-            margin-bottom: 5px;
-        }
-
         .info-item .label {
             font-size: 12px;
             color: var(--gray-500);
             text-transform: uppercase;
-            letter-spacing: 0.5px;
         }
 
         .info-item .value {
@@ -134,36 +104,33 @@
             color: var(--gray-700);
         }
 
-        /* Logos Section */
-        .logos-section {
+        .tech-section {
             background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
             padding: 20px;
             text-align: center;
+            color: var(--white);
         }
 
-        .logos-section h3 {
-            color: var(--white);
+        .tech-section h3 {
             font-size: 14px;
             margin-bottom: 15px;
             opacity: 0.8;
         }
 
-        .logos-row {
+        .tech-icons {
             display: flex;
             justify-content: center;
-            align-items: center;
-            gap: 20px;
+            gap: 15px;
             flex-wrap: wrap;
         }
 
-        .logos-row img {
-            height: 35px;
-            width: auto;
-            filter: brightness(0) invert(1);
-            opacity: 0.9;
+        .tech-icons span {
+            background: rgba(255,255,255,0.2);
+            padding: 8px 15px;
+            border-radius: 8px;
+            font-size: 12px;
         }
 
-        /* Form */
         .form-container {
             padding: 35px 40px;
         }
@@ -210,18 +177,12 @@
             border-radius: 12px;
             font-size: 15px;
             transition: all 0.3s;
-            background: var(--white);
         }
 
         input:focus, select:focus, textarea:focus {
             outline: none;
             border-color: var(--primary);
-            box-shadow: 0 0 0 4px rgba(26, 71, 42, 0.1);
-        }
-
-        textarea {
-            resize: vertical;
-            min-height: 80px;
+            box-shadow: 0 0 0 4px rgba(26,71,42,0.1);
         }
 
         .checkbox-group {
@@ -246,19 +207,10 @@
             border-color: var(--secondary);
         }
 
-        .checkbox-item input[type="radio"] {
+        .checkbox-item input {
             width: 20px;
             height: 20px;
             accent-color: var(--primary);
-        }
-
-        .checkbox-item input:checked + span {
-            font-weight: 600;
-        }
-
-        .checkbox-item.selected {
-            border-color: var(--primary);
-            background: rgba(26, 71, 42, 0.05);
         }
 
         .btn-submit {
@@ -273,116 +225,53 @@
             cursor: pointer;
             transition: all 0.3s;
             text-transform: uppercase;
-            letter-spacing: 1px;
             margin-top: 10px;
-            position: relative;
-            overflow: hidden;
         }
 
         .btn-submit:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(26, 71, 42, 0.3);
+            box-shadow: 0 10px 30px rgba(26,71,42,0.3);
         }
 
         .note {
-            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            background: #e8f5e9;
             padding: 18px 22px;
             border-radius: 14px;
             margin-top: 25px;
             font-size: 14px;
             color: var(--primary);
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .note .icon {
-            font-size: 24px;
         }
 
         .footer {
             background: var(--primary);
             padding: 25px 30px;
             text-align: center;
-            border-top: 1px solid var(--gray-200);
+            color: var(--white);
         }
 
         .footer p {
-            font-size: 14px;
-            color: var(--white);
-            margin-bottom: 12px;
+            margin-bottom: 10px;
         }
 
-        .footer .contact {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-
-        .footer .contact a {
+        .footer a {
             color: var(--white);
             text-decoration: none;
-            font-weight: 500;
-            font-size: 14px;
+            margin: 0 10px;
             opacity: 0.9;
         }
 
-        .footer .contact a:hover {
-            opacity: 1;
+        .footer a:hover {
             text-decoration: underline;
         }
 
-        .footer-logo {
-            width: 150px;
-            height: auto;
-            margin-bottom: 15px;
-            filter: brightness(0) invert(1);
-            opacity: 0.8;
-        }
-
         @media (max-width: 600px) {
-            .form-row {
-                grid-template-columns: 1fr;
-            }
-            
-            .container {
-                margin: 10px;
-                border-radius: 16px;
-            }
-            
-            .header {
-                padding: 30px 20px;
-            }
-            
-            .header h1 {
-                font-size: 24px;
-            }
-            
-            .form-container {
-                padding: 25px 20px;
-            }
-            
-            .checkbox-group {
-                flex-direction: column;
-            }
-            
-            .checkbox-item {
-                width: 100%;
-            }
-            
-            .info-bar {
-                flex-direction: column;
-                gap: 15px;
-            }
-
-            .logos-row {
-                gap: 10px;
-            }
-
-            .logos-row img {
-                height: 25px;
-            }
+            .form-row { grid-template-columns: 1fr; }
+            .container { margin: 10px; }
+            .header { padding: 30px 20px; }
+            .form-container { padding: 25px 20px; }
+            .checkbox-group { flex-direction: column; }
+            .checkbox-item { width: 100%; }
+            .info-bar { flex-direction: column; gap: 15px; }
         }
 
         @keyframes fadeIn {
@@ -390,15 +279,13 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .container {
-            animation: fadeIn 0.6s ease-out;
-        }
+        .container { animation: fadeIn 0.6s ease-out; }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <img src="https://raw.githubusercontent.com/Juan-Guillermo-Ferrer1/HACKATON-FUNDACION-PROMITIERRA/main/.logos/ProMiTierra%20Logo%20transparente.png" alt="Fundación ProMiTierra" class="header-logo">
+            <div class="brand">🏛️ Fundación ProMiTierra</div>
             <h1>Hackathon IA & Automatización</h1>
             <p class="subtitle">Edición 2026</p>
             <span class="badge">📝 Inscripción</span>
@@ -406,35 +293,33 @@
 
         <div class="info-bar">
             <div class="info-item">
-                <span class="icon">📅</span>
-                <span class="label">Fecha</span>
-                <span class="value">Por definir</span>
+                <div class="label">Fecha</div>
+                <div class="value">Por definir</div>
             </div>
             <div class="info-item">
-                <span class="icon">📍</span>
-                <span class="label">Modalidad</span>
-                <span class="value">Presencial</span>
+                <div class="label">Modalidad</div>
+                <div class="value">Presencial</div>
             </div>
             <div class="info-item">
-                <span class="icon">👥</span>
-                <span class="label">Equipo</span>
-                <span class="value">2-4 personas</span>
+                <div class="label">Equipo</div>
+                <div class="value">2-4 personas</div>
             </div>
             <div class="info-item">
-                <span class="icon">🎯</span>
-                <span class="label">Costo</span>
-                <span class="value">Gratis</span>
+                <div class="label">Costo</div>
+                <div class="value">Gratis</div>
             </div>
         </div>
 
-        <div class="logos-section">
+        <div class="tech-section">
             <h3>TECNOLOGÍAS DEL EVENTO</h3>
-            <div class="logos-row">
-                <img src=".logos/n8n.png" alt="n8n">
-                <img src=".logos/python.png" alt="Python">
-                <img src=".logos/nodejs.png" alt="Node.js">
-                <img src=".logos/openai.png" alt="OpenAI">
-                <img src=".logos/docker.png" alt="Docker">
+            <div class="tech-icons">
+                <span>🤖 n8n</span>
+                <span>🐍 Python</span>
+                <span>💻 Node.js</span>
+                <span>🧠 OpenAI</span>
+                <span>🐳 Docker</span>
+                <span>🦙 Ollama</span>
+                <span>📦 GitHub</span>
             </div>
         </div>
 
@@ -459,26 +344,26 @@
                     <input type="email" id="correo" name="correo" placeholder="tu@email.com" required>
                 </div>
                 <div class="form-group">
-                    <label for="institucion">Institución / Colegio / Universidad <span class="required">*</span></label>
-                    <input type="text" id="institucion" name="institucion" placeholder="Ej: Universidad Nacional" required>
+                    <label for="institucion">Institución <span class="required">*</span></label>
+                    <input type="text" id="institucion" name="institucion" placeholder="Universidad Nacional" required>
                 </div>
             </div>
 
             <div class="form-row">
                 <div class="form-group">
-                    <label for="edades">Edades de los integrantes</label>
-                    <input type="text" id="edades" name="edades" placeholder="Ej: 15, 16, 17">
+                    <label for="edades">Edades</label>
+                    <input type="text" id="edades" name="edades" placeholder="15, 16, 17">
                 </div>
                 <div class="form-group">
-                    <label for="skills">Skills / Conocimientos</label>
-                    <input type="text" id="skills" name="skills" placeholder="Python, JavaScript, HTML, etc.">
+                    <label for="skills">Skills</label>
+                    <input type="text" id="skills" name="skills" placeholder="Python, JavaScript...">
                 </div>
             </div>
 
-            <div class="section-title" style="margin-top: 30px;">📊 Categoría</div>
+            <div class="section-title" style="margin-top:30px;">📊 Categoría</div>
 
             <div class="form-group">
-                <label>Nivel de experiencia <span class="required">*</span></label>
+                <label>Nivel <span class="required">*</span></label>
                 <div class="checkbox-group">
                     <label class="checkbox-item">
                         <input type="radio" name="categoria" value="Principiante">
@@ -516,42 +401,24 @@
             <button type="submit" class="btn-submit">🚀 Inscribirse al Hackathon</button>
 
             <div class="note">
-                <span class="icon">ℹ️</span>
-                <span>Al enviar, se creará un issue en GitHub con tus datos. Te enviaremos un correo de confirmación.</span>
+                ℹ️ Al enviar, se creará un issue en GitHub con tus datos.
             </div>
         </form>
 
         <div class="footer">
-            <img src=".logos/ProMiTierra Logo transparente.png" alt="ProMiTierra" class="footer-logo">
-            <p><strong>Fundación ProMiTierra</strong> - Innovación con Sentido Humano</p>
-            <div class="contact">
+            <p><strong>🏛️ Fundación ProMiTierra</strong> - Innovación con Sentido Humano</p>
+            <div>
                 <a href="tel:+573116124993">📱 +57 311 612 4993</a>
                 <a href="https://wa.me/message/SBDTEPUTLDLNP1">💬 WhatsApp</a>
-                <a href="https://www.promitierra.org">🌐 www.promitierra.org</a>
+                <a href="https://www.promitierra.org">🌐 promitierra.org</a>
             </div>
         </div>
     </div>
 
     <script>
-        document.querySelectorAll('.checkbox-item input[type="radio"]').forEach(radio => {
-            radio.addEventListener('change', function() {
-                this.closest('.checkbox-group').querySelectorAll('.checkbox-item').forEach(item => {
-                    item.classList.remove('selected');
-                });
-                if (this.checked) {
-                    this.closest('.checkbox-item').classList.add('selected');
-                }
-            });
-        });
-
         document.getElementById('registroForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            
-            const formData = new FormData(this);
-            const data = Object.fromEntries(formData);
-            
-            console.log('Datos registrados:', data);
-            alert('¡Inscripción enviada! Revisa tu correo para confirmación.');
+            alert('¡Inscripción enviada!');
         });
     </script>
 </body>
