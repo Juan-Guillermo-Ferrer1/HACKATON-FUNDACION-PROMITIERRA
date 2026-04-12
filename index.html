@@ -1215,15 +1215,14 @@
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
-    (function() {
         // Config Supabase
         var SUPABASE_URL = 'https://jpgemhbkmyngxymysqjn.supabase.co';
         var SUPABASE_KEY = 'sb_publishable_iemLVDaLB8_wR4Ah84TKuw_mgauSUWQ';
         var supabaseClient = null;
 
-        // Esperar a que cargue el SDK
+        // Inicializar Supabase
         function initSupabase() {
             if (window.supabase && !supabaseClient) {
                 supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
@@ -1233,20 +1232,22 @@
         }
 
         // Cargar equipos desde Supabase
-        var cargarEquipos = async function() {
         async function cargarEquipos() {
-            const lista = document.getElementById('lista-equipos');
+            var lista = document.getElementById('lista-equipos');
             if (!lista) return;
             
             lista.innerHTML = '<div class="no-members">Cargando...</div>';
             
+            if (!supabaseClient) {
+                setTimeout(initSupabase, 500);
+                return;
+            }
+            
             try {
                 console.log('Cargando de Supabase...');
-                if (!supabaseClient) {
-                    console.log('Esperando Supabase...');
-                    return;
-                }
-                const { data: equipos, error } = await supabaseClient.from('participantes').select('*').order('created_at', { ascending: false });
+                var result = await supabaseClient.from('participantes').select('*').order('created_at', { ascending: false });
+                var equipos = result.data;
+                var error = result.error;
                 
                 if (error) {
                     console.error('Error Supabase:', error);
@@ -1254,49 +1255,33 @@
                     return;
                 }
                 
-                if (!equipos) {
-                    console.log('No hay datos');
-                    lista.innerHTML = '<div class="no-members">Aún no hay equipos inscritos. ¡Sé el primero!</div>';
-                    return;
-                }
-                
-                console.log('Equipos:', equipos);
-                
                 if (!equipos || equipos.length === 0) {
                     lista.innerHTML = '<div class="no-members">Aún no hay equipos inscritos. ¡Sé el primero!</div>';
                     return;
                 }
                 
-                lista.innerHTML = equipos.map(e => `
-                    <div class="equipo-card">
-                        <div class="nombre-equipo">${e.equipo}</div>
-                        <div class="cantidad">👥 ${e.integrantes ? e.integrantes.length : 0} miembros</div>
-                        ${e.integrantes && e.integrantes.length > 0 ? `<div class="integrantes-list">${e.integrantes.join(', ')}</div>` : ''}
-                        ${e.correo ? `<div class="correo">📧 ${e.correo}</div>` : ''}
-                    </div>
-                `).join('');
+                lista.innerHTML = equipos.map(function(e) {
+                    return '<div class="equipo-card">' +
+                        '<div class="nombre-equipo">' + e.equipo + '</div>' +
+                        '<div class="cantidad">👥 ' + (e.integrantes ? e.integrantes.length : 0) + ' miembros</div>' +
+                        (e.integrantes && e.integrantes.length > 0 ? '<div class="integrantes-list">' + e.integrantes.join(', ') + '</div>' : '') +
+                        (e.correo ? '<div class="correo">📧 ' + e.correo + '</div>' : '') +
+                        '</div>';
+                }).join('');
             } catch (error) {
                 console.error('Error:', error);
-                lista.innerHTML = '<div class="no-members">Error al cargar equipos: ' + error.message + '</div>';
+                lista.innerHTML = '<div class="no-members">Error al cargar equipos</div>';
             }
         }
 
-// Auto-refresh equipos cada 30 segundos
-        if (supabaseClient) {
-            setInterval(cargarEquipos, 30000);
-        }
+        // Auto-refresh equipos cada 30 segundos
+        setInterval(cargarEquipos, 30000);
 
         // Inicializar cuando cargue el SDK
-        if (window.supabase) {
-            initSupabase();
-        } else {
-            // Retry después de un delay
-            setTimeout(initSupabase, 1000);
-        }
-        })();
+        setTimeout(initSupabase, 1000);
 
         // Abrir GitHub Issue con datos prellenados
-document.getElementById('registroForm').addEventListener('submit', async function(e) {
+document.getElementById('registroForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
             const equipo = document.getElementById('equipo').value;
@@ -1335,9 +1320,25 @@ ${experiencia}
 ---
 *Inscripción desde página web*`;
 
+            if (!supabaseClient) {
+                alert('Esperando conexión...');
+                return;
+            }
+            
             // Guardar en Supabase
-            const integranteList = integrantes.split('\n').filter(i => i.trim());
-            const { data, error } = await supabaseClient.from('participantes').insert([{
+            const integranteList = ingredientes.split('\n').filter(function(i) { return i.trim(); });
+            const result = await supabaseClient.from('participantes').insert([{
+                equipo: equipo,
+                integrantes: integranteList,
+                correo: correo,
+                institucion: institucion,
+                edades: edades,
+                skills: skills,
+                categoria: categoria,
+                experiencia: experiencia
+            }]);
+            const data = result.data;
+            const error = result.error;
                 equipo: equipo,
                 integrantes: integranteList,
                 correo: correo,
@@ -1380,6 +1381,10 @@ ${experiencia}
         let integranteData = [];
 
         async function publicarBuscoEquipo() {
+            if (!supabaseClient) {
+                alert('Esperando conexión...');
+                return;
+            }
             const nombre = document.getElementById('busco-nombre').value;
             const tipo = document.getElementById('busco-tipo').value;
             const rol = document.getElementById('busco-rol').value;
@@ -1419,7 +1424,7 @@ ${descripcion}
 *Publicado desde página web*`;
             
             // Guardar en Supabase
-            const { data: data2, error: error2 } = await supabaseClient.from('busco_equipo').insert([{
+            const result2 = await supabaseClient.from('busco_equipo').insert([{
                 nombre: nombre,
                 tipo: tipo === 'equipo' ? 'Tengo equipo, necesito integrantes' : 'Busco equipo',
                 rol: rol,
@@ -1428,8 +1433,8 @@ ${descripcion}
                 descripcion: descripcion
             }]);
             
-            if (error2) {
-                console.error('Error guardando busco:', error2);
+            if (result2.error) {
+                console.error('Error guardando busco:', result2.error);
             }
 
             const issueUrl = `https://github.com/Juan-Guillermo-Ferrer1/HACKATON-FUNDACION-PROMITIERRA/issues/new?title=${title}&body=${encodeURIComponent(body)}`;
