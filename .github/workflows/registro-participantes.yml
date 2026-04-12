@@ -65,10 +65,6 @@ jobs:
             lines = body.split('\n')
             current_field = None
 
-            lines = body.split('\n')
-              current_field = None
-              new_field_markers = ['## Nombre del Equipo', '## Nombre de los Integrantes', '## Correo', '## Institución', '## Edades', '## Skills', '## Categoría', '## ¿Ya tienes experiencia']
-
               for i, line in enumerate(lines):
                 line_stripped = line.strip()
                 
