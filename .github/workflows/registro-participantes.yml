@@ -6,7 +6,7 @@ on:
 
 jobs:
   registro:
-    if: startsWith(github.event.issue.title, '[INSCRIPCIÓN]')
+    if: startsWith(github.event.issue.title, '[INSCRIPCIÓN]') || startsWith(github.event.issue.title, '[inscripcion]') || startsWith(github.event.issue.title, '[Inscripcion]')
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -26,21 +26,28 @@ jobs:
           python-version: '3.12'
 
       - name: Extract participant data and update JSON
-        env:
-          ISSUE_BODY: ${{ github.event.issue.body }}
-          ISSUE_TITLE: ${{ github.event.issue.title }}
-          ACTION: ${{ github.event.action }}
         run: |
+          cat > /tmp/issue_body.txt << 'EOFINPUT'
+          ${{ github.event.issue.body }}
+          EOFINPUT
+          
           python3 << 'EOF'
           import json
           import os
-          import re
+          from pathlib import Path
 
-          body = os.environ.get('ISSUE_BODY', '')
-          title = os.environ.get('ISSUE_TITLE', '')
-          action = os.environ.get('ACTION', '')
+          body = Path("/tmp/issue_body.txt").read_text()
+          title = "${{ github.event.issue.title }}"
+          action = "${{ github.event.action }}"
 
-          equipo = title.replace('[INSCRIPCIÓN] - ', '').strip()
+          equipo = title.replace('[INSCRIPCIÓN] - ', '').replace('[inscripcion] - ', '').replace('[Inscripcion] - ', '').strip()
+          
+          print(f"=== DEBUG ===")
+          print(f"Titulo: {title}")
+          print(f"Equipo extraido: {equipo}")
+          print(f"Primeras lineas del cuerpo:")
+          for i, line in enumerate(body.split('\n')[:15]):
+            print(f"  {i}: '{line}'")
 
           filepath = 'Participantes/participantes.json'
           existing = []
@@ -125,6 +132,8 @@ jobs:
 
             existing = [p for p in existing if p.get('equipo', '').lower() != equipo.lower()]
             existing.append(data)
+            print(f"TITULO RECIBIDO: {title}")
+            print(f"CUERPO RECIBIDO: {body[:200]}...")
             print(f"Participante registrado: {equipo}")
 
           with open(filepath, 'w') as f:
