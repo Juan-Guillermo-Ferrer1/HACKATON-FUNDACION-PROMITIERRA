@@ -74,31 +74,33 @@ jobs:
                 'experiencia': ''
             }
             
-            current_field = None
+            field_mapping = {
+                'Nombre del Equipo': 'equipo',
+                'Nombre de los Integrantes': 'integrantes',
+                'Correo de contacto': 'correo',
+                'Institución / Colegio / Universidad': 'institucion',
+                'Edades de los integrantes': 'edades',
+                'Skills / Conocimientos': 'skills',
+                'Categoría de participación': 'categoria',
+                '¿Ya tienes experiencia programando?': 'experiencia'
+            }
             
             for line in lines:
                 line = line.strip()
-                if line == '## Nombre del Equipo':
-                    current_field = 'equipo'
-                elif line == '## Integrantes':
-                    current_field = 'integrantes'
-                elif line == '## Correo':
-                    current_field = 'correo'
-                elif line == '## Institución':
-                    current_field = 'institucion'
-                elif line == '## Edades':
-                    current_field = 'edades'
-                elif line == '## Skills':
-                    current_field = 'skills'
-                elif line == '## Categoría':
-                    current_field = 'categoria'
-                elif line == '## Experiencia':
-                    current_field = 'experiencia'
-                elif line and not line.startswith('## '):
-                    if current_field == 'integrantes':
-                        data['integrantes'].append(line)
-                    elif current_field and line:
-                        data[current_field] = line
+                for field_name, field_key in field_mapping.items():
+                    if line == f'## {field_name}' or line == f'## {field_name}\r':
+                        current_field = field_key
+                        break
+                else:
+                    if line.startswith('- [x]'):
+                        value = line.replace('- [x]', '').strip()
+                        if current_field in ['categoria', 'experiencia']:
+                            data[current_field] = value
+                    elif line and not line.startswith('## ') and not line.startswith('- [ ]'):
+                        if current_field == 'integrantes':
+                            data['integrantes'].append(line)
+                        elif current_field and line:
+                            data[current_field] = line
             
             nombre_integrantes = data['integrantes']
             correo = data['correo']
