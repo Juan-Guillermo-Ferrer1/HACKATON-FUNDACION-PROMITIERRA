@@ -1299,18 +1299,13 @@ function publicarBuscoEquipo() {
                     '<div class="rol">' + p.rol + '</div>';
                 lista.appendChild(div);
             }
-        }
-            
-            // Recargar después de un delay
-            setTimeout(() => {
-                cargarEquipos();
-            }, 3000);
+}
             
             e.target.reset();
         });
 
         // Busco Equipo functionality
-        let integranteData = [];
+        var integrantesData = [];
 
         function actualizarLista() {
             var lista = document.getElementById('lista-integrantes');
@@ -1332,11 +1327,6 @@ function publicarBuscoEquipo() {
                 lista.appendChild(div);
             }
         }
-                    ${p.descripcion ? `<p style="margin-top:8px;font-size:13px;color:aaaacc">${p.descripcion}</p>` : ''}
-                    <div class="correo">📧 ${p.correo}</div>
-                </div>
-            `).join('');
-        }
 
         // Thank You Modal functions
         function showThankYouModal() {
@@ -1355,7 +1345,6 @@ function publicarBuscoEquipo() {
         }
         
         // Iniciar
-        cargarEquipos();
     </script>
 
     <!-- Thank You Modal -->
