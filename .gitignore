@@ -1,5 +1,5 @@
 # Ignorar carpetas
-logos/
+# logos/  # Descomentado para que se pueda ver en GitHub Pages
 
 # Ignorar archivos
 *.log
