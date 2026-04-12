@@ -1005,7 +1005,7 @@
                     <textarea id="busco-descripcion" rows="2" placeholder="Busco equipo para proyecto de IA sobre educación..."></textarea>
                 </div>
                 
-                <button type="button" class="btn" onclick="publicarBuscoEquipo()">📢 Publicar</button>
+                <button type="button" class="btn" onclick="publicarBuscoEquipo()">📢 Publicar en GitHub</button>
             </div>
 
             <div class="team-list">
@@ -1099,6 +1099,31 @@ ${experiencia}
             const nuevo = { nombre, tipo, rol, skills, correo, descripcion };
             integranteData.push(nuevo);
             
+            // Crear issue en GitHub
+            const title = encodeURIComponent(`[BUSCO-EQUIPO] ${nombre} - ${rol}`);
+            const body = `## Nombre
+${nombre}
+
+## Tipo
+${tipo === 'equipo' ? 'Tengo equipo, necesito integrante' : 'No tengo equipo, quiero unirme'}
+
+## Rol
+${rol}
+
+## Skills
+${skills}
+
+## Correo
+${correo}
+
+## Descripción
+${descripcion}
+
+---
+*Publicado desde página web*`;
+            const issueUrl = `https://github.com/Juan-Guillermo-Ferrer1/HACKATON-FUNDACION-PROMITIERRA/issues/new?title=${title}&body=${encodeURIComponent(body)}`;
+            window.open(issueUrl, '_blank');
+            
             actualizarLista();
             
             // Limpiar formulario
@@ -1108,7 +1133,7 @@ ${experiencia}
             document.getElementById('busco-correo').value = '';
             document.getElementById('busco-descripcion').value = '';
 
-            alert('¡Publicación creada! revisa la lista abajo.');
+            alert('✅ Se abrirá GitHub en una nueva pestaña.\n\n1. Confirma los datos\n2. Envía el issue\n3. ¡Listo!');
         }
 
         function actualizarLista() {
