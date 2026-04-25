@@ -39,7 +39,7 @@ Ej: Python, HTML/CSS, JavaScript
 - [ ] Avanzado
 
 
-## Experiencia
-- [ ] Ninguna
+## Experiencia en Programación (Requerida *)
 - [ ] Básica
 - [ ] Intermedia
+- [ ] Avanzada

@@ -2,6 +2,14 @@
 
 Archivos de documentación del Hackatón.
 
+## ⚠️ Requisito Obligatorio
+
+**Este Hackathon es para jóvenes con conocimientos en programación** que quieran demostrar su talento. Se aceptan todos los niveles (básico, intermedio, avanzado), pero se requiere experiencia previa en código.
+
+Los recursos en esta sección son para **reforzar y ampliar** tus habilidades, no para aprender desde cero.
+
+---
+
 ## 📄 Archivos Disponibles
 
 | Archivo | Descripción |
@@ -13,11 +21,11 @@ Archivos de documentación del Hackatón.
 
 ---
 
-## 🎓 Para Principiantes
+## 📚 Recursos de Aprendizaje
 
-Si es la primera vez que participas en un Hackatón o tienes poca experiencia:
+Esta sección contiene materiales para reforzar y ampliar tus conocimientos en:
 
-1. **[recursos-aprendizaje.md](./recursos-aprendizaje.md)** - Videos recomendados en español
+1. **[recursos-aprendizaje.md](./recursos-aprendizaje.md)** - Videos, tutoriales y guías prácticas avanzadas
 2. Revisa las [reglas](./reglas.md) antes de empezar
 3. Mira la [guía de evaluación](./guia-evaluacion.md) para saber qué se valora
 

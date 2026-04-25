@@ -8,3 +8,6 @@
 
 # Ignorar node_modules (si lo tienes)
 node_modules/
+
+# Notas privadas locales (no versionar)
+.privado/

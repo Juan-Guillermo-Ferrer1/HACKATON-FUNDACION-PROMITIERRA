@@ -6,6 +6,12 @@
 
 ---
 
+## 📋 Requisitos Obligatorios de Participación
+
+> **⚠️ ATENCIÓN:** Este Hackathon es para **jóvenes con conocimientos en programación** que quieran demostrar su talento. Se aceptan todos los niveles (básico, intermedio, avanzado), pero es necesario tener experiencia previa en desarrollo de software.
+
+---
+
 ## 🏃 ¿Cómo Participar?
 
 > ⚠️ **Antes de inscribirte:** Lee las [reglas del evento](./Documentacion/reglas.md) y los [términos](./Normatividad/CONSENTIMIENTO.md)
@@ -28,6 +34,10 @@ Insccríbete de forma rápida y visual:
 ## 🏛️ Fundación ProMiTierra | Caquetá, Colombia
 
 > *"No es solo una competencia, es un taller para aprender, crear y transformar tu futuro con tecnología."*
+
+### 📌 Inscripción Oficial
+
+**[🔗 Regístrate en el portal de eventos de ProMiTierra](https://pmo.promitierra.org/event/hackathon-de-innovacion-ia-automatizacion-2026-2/register)**
 
 ### ¿Quién es Fundación ProMiTierra?
 

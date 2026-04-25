@@ -1,22 +1,27 @@
-# 📚 Recursos de Aprendizaje para Principiantes
+# 📚 Recursos de Aprendizaje y Referencia
 
 <p align="center">
-  <img src="../.github/logos/python.png" height="50">   
-  <img src="../.github/logos/nodejs.png" height="50">   
-  <img src="../.github/logos/github.png" height="50">   
+  <img src="../.github/logos/python.png" height="50">   
+  <img src="../.github/logos/nodejs.png" height="50">   
+  <img src="../.github/logos/github.png" height="50">   
   <img src="../.github/logos/docker.png" height="50">
 </p>
 
-> **¡No necesitas ser un experto!** Esta guía te ayudará a aprender paso a paso todo lo necesario para participar en el Hackatón.
+> **¡Amplía tu talento!** Esta guía te ayudará a reforzar y expandir habilidades necesarias para brillar en este Hackathon.
+
+## ⚠️ Requisito Previo
+
+Esta documentación es un **complemento para jóvenes que ya tienen bases en programación**. Si aún no sabes programar, te recomendamos primero aprender fundamentos en un lenguaje de programación antes de participar.
 
 ## 🎯 ¿Por dónde empezar?
 
-Si eres **completamente principiante**, sigue este orden:
+Si ya tienes **experiencia básica en programación**, sigue este orden para expandir tus habilidades:
 
-1. Fundamentos de programación (elige Python o JavaScript)
-2. Instalar herramientas y configurar tu entorno
-3. Git y GitHub para compartir tu código
-4. Tu primer proyecto simple con IA o automatización
+1. Profundiza en tu lenguaje principal (Python o JavaScript)
+2. Aprende sobre IA, LLMs y APIs
+3. Domina herramientas de automatización y despliegue
+4. Git y GitHub para colaboración profesional
+5. Docker para contenedores y despliegue en producción
 
 ---
 

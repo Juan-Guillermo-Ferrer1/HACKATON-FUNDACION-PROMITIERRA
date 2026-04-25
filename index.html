@@ -472,19 +472,20 @@
             </div>
 
             <div class="form-group">
-                <label>Experiencia programando</label>
+                <label>Experiencia programando *</label>
+                <p style="font-size: 0.85rem; color: var(--muted); margin-bottom: 0.5rem;">Requerido: debes tener conocimientos previos en programación</p>
                 <div class="radio-group">
                     <label class="radio-item">
-                        <input type="radio" name="experiencia" value="Ninguna">
-                        <span>❌ Ninguna</span>
-                    </label>
-                    <label class="radio-item">
-                        <input type="radio" name="experiencia" value="Básica">
+                        <input type="radio" name="experiencia" value="Básica" required>
                         <span>🔰 Básica</span>
                     </label>
                     <label class="radio-item">
-                        <input type="radio" name="experiencia" value="Intermedia">
+                        <input type="radio" name="experiencia" value="Intermedia" required>
                         <span>💻 Intermedia</span>
+                    </label>
+                    <label class="radio-item">
+                        <input type="radio" name="experiencia" value="Avanzada" required>
+                        <span>🚀 Avanzada</span>
                     </label>
                 </div>
             </div>
@@ -651,6 +652,12 @@
         // Validate required
         if (!equipo || !integrantes || !correo || !institucion || !catInput) {
             alert('Por favor completa los campos obligatorios marcados con *');
+            return;
+        }
+
+        // Validate experience requirement
+        if (!expInput) {
+            alert('Por favor selecciona tu nivel de experiencia en programación. Recuerda que debes tener conocimientos previos en código para participar.');
             return;
         }
 

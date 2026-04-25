@@ -33,10 +33,10 @@ He creado una página web simple
 - [ ] Intermedio
 - [ ] Avanzado
 
-## ¿Ya tienes experiencia programando?
-- [ ] Ninguna
-- [x] Básica
-- [ ] Intermedia
+## ¿Ya tienes experiencia programando? (Requerida *)
+- [ ] Básica
+- [x] Intermedia
+- [ ] Avanzada
 
 ---
 

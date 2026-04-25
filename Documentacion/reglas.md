@@ -4,19 +4,28 @@
   <img src="../.github/logos/ProMiTierra Logo.png" height="80">
 </p>
 
-> *"Este Hackathon es para TODO el público. Si tienes una idea y ganas de aprender, ¡eres bienvenido!"*
+> *"Este Hackathon es para jóvenes talentosos con conocimientos en programación. Si tienes bases en código y quieres demostrar tu talento, ¡eres bienvenido!"*
 
 ## 🎯 ¿Quién Puede Participar?
 
-### ¡Absolutamente TODO EL MUNDO!
-- ✅ **No importa tu edad** (15 años o 80 años, ¡todos pueden!)
-- ✅ **No importa tu género** o ubicación geográfica
-- ✅ **No importa tu experiencia** - principiante, intermedio o avanzado
-- ✅ **Lo único que necesitas:** Ganas de aprender y una idea para mejorar algo
-- ✅ **Equipos de 2 a 4 personas** (o puedes participar solo)
+### 🌟 Para Jóvenes Talentosos con Bases en Programación
 
-### 💡 Tip para principiantes
-Si nunca has programado, ¡este es el momento perfecto! Tendrás mentores, tutoriales y toda la ayuda necesaria.
+Este Hackathon está diseñado para **jóvenes con conocimientos en programación** que quieran demostrar su talento y construir soluciones reales. Aceptamos todos los niveles, pero se requiere experiencia previa:
+
+- ✅ **Experiencia previa en programación:** Conocimientos básicos o intermedios en al menos un lenguaje de programación
+- ✅ **Capacidad de desarrollo:** Habilidad para escribir, depurar y ejecutar código
+- ✅ **Ganas de aprender y innovar:** Pasión por convertir ideas en proyectos reales
+- ✅ **Equipos de 2 a 4 personas:** Todos los miembros deben tener bases en programación
+
+### 👥 Perfiles Bienvenidos
+
+- **Estudiantes** de programación, ingeniería, tecnología o carreras afines
+- **Jóvenes autodidactas** que hayan aprendido a programar por cuenta propia
+- **Desarrolladores en formación** que quieran fortalecer su portafolio
+- **Aprendices y principiantes** con experiencia práctica en código
+
+### 💡 Nota Importante
+Todos los participantes contarán con mentoría técnica y tutoriales para fortalecer sus habilidades durante el evento.
 
 ---
 
